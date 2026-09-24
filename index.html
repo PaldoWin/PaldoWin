@@ -282,7 +282,7 @@
                         </div>
                     </div>
 
-                    <button onclick="proceedDepositGateway()" class="w-full gold-gradient text-black font-ext500 py-3 rounded-lg text-sm shadow hover:opacity-90 transition">Next</button>
+                    <button onclick="proceedDepositGateway()" class="w-full gold-gradient text-black font-bold py-3 rounded-lg text-sm shadow hover:opacity-90 transition">Next</button>
                 </div>
 
                 <!-- Withdrawal Tab Content -->
@@ -294,22 +294,6 @@
                         <button onclick="selectWithdrawWallet('Maya')" id="w-tab-maya" class="px-4 py-2 rounded-lg border border-[#2a2f3d] bg-[#12141a] text-gray-400 font-bold text-xs flex items-center space-x-2">
                             <i class="fa-solid fa-wallet text-green-400"></i> <span>Maya</span>
                         </button>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="md:col-span-2">
-                            <div id="bound-card-container"></div>
-                        </div>
-                        <div class="bg-[#12141a] p-4 rounded-2xl border border-[#2a2f3d] text-xs space-y-2">
-                            <div class="text-amber-500 font-bold flex items-center space-x-1">
-                                <i class="fa-solid fa-clock"></i>
-                                <span>Withdrawal Time:</span>
-                            </div>
-                            <div class="text-red-400 font-bold">24 hours</div>
-                            <p class="text-gray-400 text-[11px] leading-relaxed">
-                                Note: Please make sure that your E-Wallet has been verified for withdrawal application.
-                            </p>
-                        </div>
                     </div>
 
                     <div class="grid grid-cols-2 gap-4 bg-[#12141a] p-3 rounded-lg border border-[#2a2f3d] text-xs">
@@ -325,20 +309,17 @@
 
                     <div>
                         <div class="text-xs font-bold text-gray-400 mb-2">Withdrawal Amount</div>
-                        <div class="grid grid-cols-3 sm:grid-cols-3 gap-2">
+                        <div class="grid grid-cols-3 gap-2">
                             <button onclick="setWithdrawAmount(100)" class="bg-[#12141a] border border-[#2a2f3d] hover:border-yellow-500 py-2 rounded text-xs text-white font-bold">100</button>
                             <button onclick="setWithdrawAmount(300)" class="bg-[#12141a] border border-[#2a2f3d] hover:border-yellow-500 py-2 rounded text-xs text-white font-bold">300</button>
                             <button onclick="setWithdrawAmount(500)" class="bg-[#12141a] border border-[#2a2f3d] hover:border-yellow-500 py-2 rounded text-xs text-white font-bold">500</button>
-                            <button onclick="setWithdrawAmount(800)" class="bg-[#12141a] border border-[#2a2f3d] hover:border-yellow-500 py-2 rounded text-xs text-white font-bold">800</button>
-                            <button onclick="setWithdrawAmount(1000)" class="bg-[#12141a] border border-[#2a2f3d] hover:border-yellow-500 py-2 rounded text-xs text-white font-bold">1,000</button>
-                            <button onclick="setWithdrawAmount(5000)" class="bg-[#12141a] border border-[#2a2f3d] hover:border-yellow-500 py-2 rounded text-xs text-white font-bold">5,000</button>
                         </div>
                         <div class="mt-2">
                             <input type="number" id="withdraw-amount-input" placeholder="Enter custom amount" class="w-full px-3 py-2 rounded custom-input text-xs">
                         </div>
                     </div>
 
-                    <button onclick="submitWithdrawal()" class="w-full bg-gradient-to-r from-red-600 to-rose-700 hover:opacity-90 text-white font-bold py-3 rounded-lg text-sm shadow transition">Submit</button>
+                    <button onclick="submitWithdrawal()" class="w-full bg-gradient-to-r from-red-600 to-rose-700 hover:opacity-90 text-white font-bold py-3 rounded-lg text-sm shadow transition">Submit Withdrawal</button>
                 </div>
 
                 <!-- My Account Tab Content -->
@@ -374,8 +355,10 @@
                         <i class="fa-solid fa-gift text-yellow-500"></i>
                         <span>VIP Reward Center</span>
                     </h3>
-                    <div id="reward-list-container" class="space-y-3">
-                        <!-- Populated dynamically -->
+                    <div class="bg-[#12141a] p-4 rounded-lg border border-[#2a2f3d] text-xs space-y-2">
+                        <div class="text-white font-bold">Daily Login Bonus</div>
+                        <div class="text-gray-400">Claim your daily active reward of ₱10.00</div>
+                        <button onclick="claimReward()" class="mt-2 px-4 py-1.5 gold-gradient text-black font-bold rounded">Claim</button>
                     </div>
                 </div>
 
@@ -427,176 +410,39 @@
         </div>
     </div>
 
-    <!-- ADD E-WALLET ACCOUNT MODAL -->
-    <div id="addWalletModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden">
-        <div class="bg-[#181b22] border border-[#2a2f3d] w-full max-w-sm rounded-xl p-6 relative shadow-2xl space-y-4">
-            <button onclick="closeModal('addWalletModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
-            <h3 class="text-base font-bold text-white">Add E-Wallet Account</h3>
-            <div>
-                <label class="block text-xs text-gray-400 mb-1">Provider</label>
-                <select id="bind-provider" class="w-full px-3 py-2 rounded custom-input text-xs">
-                    <option value="GCash">GCash</option>
-                    <option value="Maya">Maya</option>
-                </select>
-            </div>
-            <div>
-                <label class="block text-xs text-gray-400 mb-1">Account Name<span class="text-red-500">*</span></label>
-                <input type="text" id="bind-accname" placeholder="e.g. Juan Dela Cruz" class="w-full px-3 py-2 rounded custom-input text-xs">
-            </div>
-            <div>
-                <label class="block text-xs text-gray-400 mb-1">Phone Number<span class="text-red-500">*</span></label>
-                <input type="text" id="bind-number" placeholder="09XXXXXXXXX" class="w-full px-3 py-2 rounded custom-input text-xs">
-            </div>
-            <button onclick="saveEWalletAccount()" class="w-full gold-gradient text-black font-bold py-2.5 rounded text-xs shadow">Save Account</button>
-        </div>
-    </div>
-
-    <!-- EXTERNAL PAYMENT GATEWAY PAGE (Simulated in a new browser tab/window) -->
-    <div id="gatewayPage" class="fixed inset-0 bg-slate-900 z-[100] flex flex-col hidden text-slate-100 overflow-y-auto">
-        <div class="bg-blue-600 text-white px-6 py-4 flex justify-between items-center shadow-md">
-            <div class="flex items-center space-x-2 font-bold text-lg">
-                <i class="fa-solid fa-shield-halved"></i>
-                <span>GCash Secure Payment Gateway</span>
-            </div>
-            <button onclick="closeGatewayPage()" class="bg-blue-700 hover:bg-blue-800 text-white px-3 py-1.5 rounded text-xs font-bold transition">Return to App</button>
-        </div>
-        <div class="flex-grow flex flex-col items-center justify-center p-6 bg-slate-950 space-y-6">
-            <div class="bg-slate-900 p-6 rounded-2xl shadow-2xl border border-slate-800 max-w-sm w-full text-center space-y-5">
-                <div class="text-blue-400 font-bold text-sm">Scan QR Code or Copy Phone Number</div>
-                
-                <!-- Working QR Code Rendering Using Reliable Quickchart/QR Generator -->
-                <div class="bg-white p-4 rounded-xl flex items-center justify-center shadow-inner">
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=09920232506" alt="GCash QR Code" class="w-44 h-44 object-contain">
-                </div>
-
-                <div class="text-xs text-slate-300 space-y-2 bg-slate-800/60 p-3 rounded-xl border border-slate-700">
-                    <div class="flex items-center justify-between">
-                        <span class="text-slate-400">Phone Number:</span>
-                        <div class="flex items-center space-x-2">
-                            <span id="gateway-phone-text" class="text-blue-400 font-bold font-mono text-sm">09920232506</span>
-                            <button onclick="copyGatewayNumber()" class="bg-blue-600 hover:bg-blue-500 text-white px-2 py-1 rounded text-[10px] font-bold transition flex items-center space-x-1">
-                                <i class="fa-solid fa-copy"></i><span>Copy</span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="flex items-center justify-between border-t border-slate-700 pt-2">
-                        <span class="text-slate-400">Amount to Pay:</span>
-                        <span id="gateway-amount-display" class="text-red-400 font-bold text-sm">₱500.00</span>
-                    </div>
-                </div>
-
-                <button onclick="completeGatewayPayment()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl text-sm shadow-lg transition">I Have Completed Payment</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- GAME PLAY MODAL -->
-    <div id="gameModal" class="fixed inset-0 bg-black/90 z-50 flex flex-col hidden">
-        <div class="bg-[#181b22] px-6 py-3 border-b border-[#2a2f3d] flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <span id="active-game-title" class="text-yellow-400 font-bold text-lg">Game</span>
-                <span class="text-xs bg-green-500/10 text-green-400 px-2 py-0.5 rounded border border-green-500/30">Live Balance: <span id="game-modal-balance">₱0.00</span></span>
-            </div>
-            <button onclick="closeModal('gameModal')" class="bg-red-600 hover:bg-red-500 text-white px-3 py-1 rounded text-xs font-bold"><i class="fa-solid fa-xmark mr-1"></i> Exit Game</button>
-        </div>
-        <div class="flex-grow flex items-center justify-center p-6 bg-gradient-to-b from-[#0f1117] to-[#181b22]">
-            <div class="bg-[#181b22] border border-[#2a2f3d] p-6 rounded-2xl w-full max-w-lg text-center space-y-6 shadow-2xl">
-                <div class="text-6xl text-yellow-500 animate-bounce"><i class="fa-solid fa-coins"></i></div>
-                <div>
-                    <h3 id="simulation-game-name" class="text-xl font-bold text-white">Super Ace</h3>
-                    <p class="text-xs text-gray-400 mt-1">Place your bet and spin to win big multipliers!</p>
-                </div>
-                <div class="flex items-center justify-center space-x-3">
-                    <span class="text-xs text-gray-400">Bet Amount:</span>
-                    <button onclick="adjustBet(-10)" class="bg-gray-800 px-3 py-1 rounded text-white">-</button>
-                    <span id="current-bet-val" class="text-yellow-400 font-bold text-base">₱20.00</span>
-                    <button onclick="adjustBet(10)" class="bg-gray-800 px-3 py-1 rounded text-white">+</button>
-                </div>
-                <button onclick="executeSpin()" class="w-full gold-gradient text-black font-bold py-3 rounded-xl text-base shadow-lg hover:opacity-90 transition">SPIN NOW</button>
-                <div id="spin-result-msg" class="text-sm font-bold text-gray-300 h-6"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- JavaScript Application Controller -->
+    <!-- Application Script Logic -->
     <script>
-        let currentUser = JSON.parse(localStorage.getItem('paldowin_user')) || null;
-        let currentBet = 20.00;
-        let selectedDepositAmt = 500;
-        let activeWithdrawWallet = 'GCash';
+        // Global state container
+        let currentUser = null;
+        let userBalance = 0.00;
+        let totalBets = 0.00;
+        let depositMethod = 'GCash';
+        let depositAmount = 500;
+        let betHistory = [];
+        let pnlHistory = [];
 
-        // VIP Threshold Tiers (VIP 0 to VIP 10)
-        const vipThresholds = [
-            { level: 0, requiredBets: 0, reward: 0 },
-            { level: 1, requiredBets: 20000, reward: 50 },
-            { level: 2, requiredBets: 60000, reward: 150 },
-            { level: 3, requiredBets: 150000, reward: 300 },
-            { level: 4, requiredBets: 350000, reward: 800 },
-            { level: 5, requiredBets: 800000, reward: 1800 },
-            { level: 6, requiredBets: 1800000, reward: 3800 },
-            { level: 7, requiredBets: 3800000, reward: 8000 },
-            { level: 8, requiredBets: 8000000, reward: 18000 },
-            { level: 9, requiredBets: 16000000, reward: 38000 },
-            { level: 10, requiredBets: 35000000, reward: 80000 }
-        ];
-
-        function initApp() {
-            if (currentUser) {
-                if (currentUser.vipLevel === undefined) currentUser.vipLevel = 0;
-                if (currentUser.totalBets === undefined) currentUser.totalBets = 0;
-                if (currentUser.rewards === undefined) currentUser.rewards = {};
-                if (!currentUser.betHistory) currentUser.betHistory = [];
-                if (!currentUser.pnl) currentUser.pnl = [];
-                if (!currentUser.ewallets) currentUser.ewallets = [];
-
-                document.getElementById('logged-out-nav').classList.add('hidden');
-                document.getElementById('logged-in-nav').classList.remove('hidden');
-                document.getElementById('header-vip-badge').innerText = 'VIP ' + currentUser.vipLevel;
-                updateBalanceDisplay();
-            } else {
-                document.getElementById('logged-out-nav').classList.remove('hidden');
-                document.getElementById('logged-in-nav').classList.add('hidden');
-                document.getElementById('header-vip-badge').innerText = 'VIP 0';
-            }
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.remove('hidden');
         }
 
-        function updateBalanceDisplay() {
-            if (!currentUser) return;
-            const formatted = '₱' + currentUser.balance.toFixed(2);
-            document.getElementById('user-balance-display').innerText = formatted;
-            document.getElementById('withdraw-central-bal').innerText = formatted;
-            document.getElementById('withdraw-available-bal').innerText = formatted;
-            document.getElementById('game-modal-balance').innerText = formatted;
-            document.getElementById('header-vip-badge').innerText = 'VIP ' + currentUser.vipLevel;
-            localStorage.setItem('paldowin_user', JSON.stringify(currentUser));
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
         }
 
-        function refreshBalance() {
-            alert('Balance synchronized successfully!');
-            updateBalanceDisplay();
-        }
-
-        function triggerNavAlert(categoryName) {
-            alert(categoryName + ' category is coming soon!');
-        }
-
-        function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
-        function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
-
-        function switchModal(fromId, toId) {
-            closeModal(fromId);
-            openModal(toId);
+        function switchModal(closeId, openId) {
+            closeModal(closeId);
+            openModal(openId);
         }
 
         function togglePasswordVisibility(inputId, iconId) {
-            const inputField = document.getElementById(inputId);
+            const input = document.getElementById(inputId);
             const icon = document.getElementById(iconId);
-            if (inputField.type === 'password') {
-                inputField.type = 'text';
+            if (input.type === 'password') {
+                input.type = 'text';
                 icon.classList.remove('fa-eye-slash');
                 icon.classList.add('fa-eye');
             } else {
-                inputField.type = 'password';
+                input.type = 'password';
                 icon.classList.remove('fa-eye');
                 icon.classList.add('fa-eye-slash');
             }
@@ -607,350 +453,63 @@
             const username = document.getElementById('reg-username').value;
             const mobile = document.getElementById('reg-mobile').value;
             
-            currentUser = { 
-                username, 
-                mobile, 
-                balance: 0.00,
-                vipLevel: 0,
-                totalBets: 0,
-                rewards: {},
-                betHistory: [],
-                pnl: [],
-                ewallets: []
-            };
-            localStorage.setItem('paldowin_user', JSON.stringify(currentUser));
+            currentUser = { username, mobile, vip: 'VIP 0' };
+            userBalance = 100.00; // Registration welcome bonus
             
+            updateAuthUI();
             closeModal('registerModal');
-            initApp();
-            alert('Registration successful! Welcome to PaldoWin.');
+            alert('Registration successful! Welcome bonus of ₱100 added.');
         }
 
         function handleLogin(e) {
             e.preventDefault();
             const username = document.getElementById('login-username').value;
             
-            if(!currentUser) {
-                currentUser = { 
-                    username, 
-                    mobile: '09920232506', 
-                    balance: 0.00, 
-                    vipLevel: 0,
-                    totalBets: 0,
-                    rewards: {},
-                    betHistory: [],
-                    pnl: [],
-                    ewallets: []
-                };
-            }
-            localStorage.setItem('paldowin_user', JSON.stringify(currentUser));
+            currentUser = { username, mobile: '+63 992 023 ****', vip: 'VIP 1' };
+            userBalance = 500.00;
             
+            updateAuthUI();
             closeModal('loginModal');
-            initApp();
             alert('Welcome back, ' + username + '!');
         }
 
         function logout() {
             currentUser = null;
-            localStorage.removeItem('paldowin_user');
-            initApp();
+            userBalance = 0.00;
+            updateAuthUI();
             alert('Logged out successfully.');
         }
 
-        function openPersonalCenter(tabName) {
-            if (!currentUser) {
-                openModal('loginModal');
-                return;
-            }
-            document.getElementById('pc-username').innerText = currentUser.username;
-            document.getElementById('profile-username').innerText = currentUser.username;
-            document.getElementById('profile-mobile').innerText = currentUser.mobile;
-            document.getElementById('profile-vip').innerText = 'VIP ' + currentUser.vipLevel;
-            document.getElementById('profile-total-bets').innerText = '₱' + currentUser.totalBets.toFixed(2);
-            updateWithdrawCardUI();
-            openModal('personalCenterModal');
-            switchTab(tabName);
-        }
+        function updateAuthUI() {
+            const loggedOutNav = document.getElementById('logged-out-nav');
+            const loggedInNav = document.getElementById('logged-in-nav');
+            const balanceDisp = document.getElementById('user-balance-display');
+            const vipBadge = document.getElementById('header-vip-badge');
 
-        function switchTab(tabName) {
-            ['deposit', 'withdrawal', 'myAccount', 'rewardCenter', 'betRecord', 'profitAndLoss'].forEach(t => {
-                const el = document.getElementById('tab-content-' + t);
-                const btn = document.getElementById('tab-btn-' + t);
-                if(el) el.classList.add('hidden');
-                if(btn) btn.classList.remove('bg-[#181b22]', 'text-yellow-400');
-            });
-            const activeEl = document.getElementById('tab-content-' + tabName);
-            const activeBtn = document.getElementById('tab-btn-' + tabName);
-            if(activeEl) activeEl.classList.remove('hidden');
-            if(activeBtn) activeBtn.classList.add('bg-[#181b22]', 'text-yellow-400');
-
-            if(tabName === 'rewardCenter') renderRewardCenter();
-            if(tabName === 'betRecord') renderBetRecord();
-            if(tabName === 'profitAndLoss') renderPnL();
-        }
-
-        function checkVipProgression() {
-            let newLevel = 0;
-            for (let i = vipThresholds.length - 1; i >= 0; i--) {
-                if (currentUser.totalBets >= vipThresholds[i].requiredBets) {
-                    newLevel = vipThresholds[i].level;
-                    break;
-                }
-            }
-            if (newLevel > currentUser.vipLevel) {
-                currentUser.vipLevel = newLevel;
-                alert('🎉 Congratulations! You have unlocked VIP ' + newLevel + '! Check your Reward Center to claim your VIP reward.');
-            }
-            document.getElementById('header-vip-badge').innerText = 'VIP ' + currentUser.vipLevel;
-            document.getElementById('profile-vip').innerText = 'VIP ' + currentUser.vipLevel;
-            document.getElementById('profile-total-bets').innerText = '₱' + currentUser.totalBets.toFixed(2);
-        }
-
-        function renderRewardCenter() {
-            const container = document.getElementById('reward-list-container');
-            let html = '';
-
-            for (let i = 1; i < vipThresholds.length; i++) {
-                const tier = vipThresholds[i];
-                const isUnlocked = currentUser.vipLevel >= tier.level;
-                const isClaimed = currentUser.rewards && currentUser.rewards[tier.level] === 'claimed';
-
-                let statusBtn = '';
-                if (isClaimed) {
-                    statusBtn = `<span class="bg-gray-800 text-gray-400 px-4 py-1.5 rounded text-xs font-bold">Claimed</span>`;
-                } else if (isUnlocked) {
-                    statusBtn = `<button onclick="claimVipReward(${tier.level}, ${tier.reward})" class="gold-gradient text-black px-4 py-1.5 rounded text-xs font-bold shadow hover:opacity-90">Claim ₱${tier.reward}</button>`;
-                } else {
-                    statusBtn = `<span class="text-gray-500 text-xs">Locked (Need ₱${tier.requiredBets.toLocaleString()} bets)</span>`;
-                }
-
-                html += `
-                    <div class="bg-[#12141a] p-4 rounded-xl border border-[#2a2f3d] flex items-center justify-between">
-                        <div>
-                            <div class="text-sm font-bold text-white">VIP ${tier.level} Upgrade Reward</div>
-                            <div class="text-xs text-yellow-500 mt-0.5">Reward Amount: ₱${tier.reward.toFixed(2)}</div>
-                            <div class="text-[11px] text-gray-400 mt-1">Requirement: Total Bets Reached ₱${tier.requiredBets.toLocaleString()}</div>
-                        </div>
-                        <div>${statusBtn}</div>
-                    </div>
-                `;
-            }
-            container.innerHTML = html;
-        }
-
-        function claimVipReward(level, amount) {
-            if(!currentUser.rewards) currentUser.rewards = {};
-            currentUser.rewards[level] = 'claimed';
-            currentUser.balance += amount;
-            updateBalanceDisplay();
-            renderRewardCenter();
-            alert('Successfully claimed VIP ' + level + ' reward ₱' + amount + ' bonus!');
-        }
-
-        function selectWithdrawWallet(walletType) {
-            activeWithdrawWallet = walletType;
-            if(walletType === 'GCash') {
-                document.getElementById('w-tab-gcash').className = "px-4 py-2 rounded-lg border-2 border-blue-500 bg-blue-500/10 text-white font-bold text-xs flex items-center space-x-2";
-                document.getElementById('w-tab-maya').className = "px-4 py-2 rounded-lg border border-[#2a2f3d] bg-[#12141a] text-gray-400 font-bold text-xs flex items-center space-x-2";
+            if (currentUser) {
+                loggedOutNav.classList.add('hidden');
+                loggedInNav.classList.remove('hidden');
+                balanceDisp.textContent = '₱' + userBalance.toFixed(2);
+                vipBadge.textContent = currentUser.vip;
+                
+                document.getElementById('pc-username').textContent = currentUser.username;
+                document.getElementById('profile-username').textContent = currentUser.username;
+                document.getElementById('profile-mobile').textContent = currentUser.mobile;
+                document.getElementById('profile-vip').textContent = currentUser.vip;
+                document.getElementById('withdraw-central-bal').textContent = '₱' + userBalance.toFixed(2);
+                document.getElementById('withdraw-available-bal').textContent = '₱' + userBalance.toFixed(2);
             } else {
-                document.getElementById('w-tab-maya').className = "px-4 py-2 rounded-lg border-2 border-green-500 bg-green-500/10 text-white font-bold text-xs flex items-center space-x-2";
-                document.getElementById('w-tab-gcash').className = "px-4 py-2 rounded-lg border border-[#2a2f3d] bg-[#12141a] text-gray-400 font-bold text-xs flex items-center space-x-2";
-            }
-            updateWithdrawCardUI();
-        }
-
-        function updateWithdrawCardUI() {
-            if(!currentUser) return;
-            if(!currentUser.ewallets) currentUser.ewallets = [];
-            
-            const matchedWallet = currentUser.ewallets.find(w => w.type === activeWithdrawWallet);
-            const container = document.getElementById('bound-card-container');
-
-            if (matchedWallet) {
-                const masked = '*******' + matchedWallet.number.slice(-4);
-                container.innerHTML = `
-                    <div class="bg-gradient-to-r ${matchedWallet.type === 'GCash' ? 'from-blue-600 to-sky-500' : 'from-emerald-600 to-green-500'} p-5 rounded-2xl shadow-lg relative flex flex-col justify-between h-36">
-                        <div class="flex justify-between items-start">
-                            <span class="text-white font-black tracking-widest text-sm uppercase">${matchedWallet.type} - ${matchedWallet.accName}</span>
-                            <button onclick="removeWallet('${matchedWallet.type}')" class="text-white/80 hover:text-white text-xs bg-black/20 px-2 py-1 rounded">Change</button>
-                        </div>
-                        <div>
-                            <div class="text-white font-mono font-bold text-lg tracking-wider">${masked}</div>
-                            <div class="text-[10px] text-white/80 mt-1">${matchedWallet.date}</div>
-                        </div>
-                    </div>
-                `;
-            } else {
-                container.innerHTML = `
-                    <button onclick="openAddWalletModal()" class="w-full h-36 rounded-2xl border-2 border-dashed border-gray-600 hover:border-yellow-500 bg-[#12141a] hover:bg-gray-800/50 flex flex-col items-center justify-center space-y-2 transition group">
-                        <div class="w-10 h-10 rounded-full bg-gray-800 group-hover:bg-yellow-500 group-hover:text-black flex items-center justify-center text-gray-300 transition text-lg font-bold">
-                            <i class="fa-solid fa-plus"></i>
-                        </div>
-                        <span class="text-xs font-bold text-gray-300 group-hover:text-yellow-400">Add ${activeWithdrawWallet} Account</span>
-                    </button>
-                `;
+                loggedOutNav.classList.remove('hidden');
+                loggedInNav.classList.add('hidden');
             }
         }
 
-        function openAddWalletModal() {
-            document.getElementById('bind-provider').value = activeWithdrawWallet;
-            document.getElementById('bind-accname').value = '';
-            document.getElementById('bind-number').value = '';
-            openModal('addWalletModal');
+        function refreshBalance() {
+            alert('Balance synchronized: ₱' + userBalance.toFixed(2));
         }
 
-        function saveEWalletAccount() {
-            const provider = document.getElementById('bind-provider').value;
-            const accName = document.getElementById('bind-accname').value.trim();
-            const number = document.getElementById('bind-number').value.trim();
-            
-            if(!accName) {
-                alert('Please enter account name.');
-                return;
-            }
-            if(!number || number.length < 10) {
-                alert('Please enter a valid phone number.');
-                return;
-            }
-
-            if(!currentUser.ewallets) currentUser.ewallets = [];
-            currentUser.ewallets = currentUser.ewallets.filter(w => w.type !== provider);
-            
-            currentUser.ewallets.push({ 
-                type: provider, 
-                accName: accName, 
-                number: number, 
-                date: new Date().toISOString().replace('T', ' ').substring(0, 19) 
-            });
-
-            localStorage.setItem('paldowin_user', JSON.stringify(currentUser));
-            updateWithdrawCardUI();
-            closeModal('addWalletModal');
-            alert(provider + ' account linked successfully!');
-        }
-
-        function removeWallet(type) {
-            if(confirm('Do you want to change/remove this bound account?')) {
-                currentUser.ewallets = currentUser.ewallets.filter(w => w.type !== type);
-                localStorage.setItem('paldowin_user', JSON.stringify(currentUser));
-                updateWithdrawCardUI();
-            }
-        }
-
-        function setWithdrawAmount(amount) {
-            document.getElementById('withdraw-amount-input').value = amount;
-        }
-
-        function setDepositAmount(amount) {
-            selectedDepositAmt = amount;
-            document.getElementById('deposit-amount-input').value = amount;
-        }
-
-        function selectDepositMethod(method) {
-            if(method === 'GCash') {
-                document.getElementById('method-gcash').className = "border border-yellow-500 bg-yellow-500/10 p-2.5 rounded-lg text-center cursor-pointer transition";
-                document.getElementById('method-maya').className = "border border-gray-700 bg-[#12141a] p-2.5 rounded-lg text-center cursor-pointer hover:border-yellow-500 transition";
-            } else {
-                document.getElementById('method-maya').className = "border border-yellow-500 bg-yellow-500/10 p-2.5 rounded-lg text-center cursor-pointer transition";
-                document.getElementById('method-gcash').className = "border border-gray-700 bg-[#12141a] p-2.5 rounded-lg text-center cursor-pointer hover:border-yellow-500 transition";
-            }
-        }
-
-        function proceedDepositGateway() {
-            const amount = parseFloat(document.getElementById('deposit-amount-input').value);
-            if(isNaN(amount) || amount <= 0) {
-                alert('Please enter a valid amount.');
-                return;
-            }
-            selectedDepositAmt = amount;
-            document.getElementById('gateway-amount-display').innerText = '₱' + amount.toFixed(2);
-            
-            closeModal('personalCenterModal');
-            
-            // Route to secure payment page in a new tab/window
-            const gatewayPageEl = document.getElementById('gatewayPage');
-            gatewayPageEl.classList.remove('hidden');
-            
-            // Alternatively attempt real window.open with a data/blob view or full overlay simulation
-            try {
-                window.open('', '_blank');
-            } catch(e) {}
-        }
-
-        function closeGatewayPage() {
-            document.getElementById('gatewayPage').classList.add('hidden');
-        }
-
-        function copyGatewayNumber() {
-            const phoneNum = document.getElementById('gateway-phone-text').innerText;
-            navigator.clipboard.writeText(phoneNum).then(() => {
-                alert('Phone number copied to clipboard: ' + phoneNum);
-            }).catch(err => {
-                alert('Failed to copy number.');
-            });
-        }
-
-        function completeGatewayPayment() {
-            currentUser.balance += selectedDepositAmt;
-            currentUser.pnl.push({ date: new Date().toLocaleDateString(), deposit: selectedDepositAmt, withdraw: 0, profit: selectedDepositAmt });
-            updateBalanceDisplay();
-            closeGatewayPage();
-            alert('Deposit of ₱' + selectedDepositAmt.toFixed(2) + ' credited successfully!');
-        }
-
-        function submitWithdrawal() {
-            const matchedWallet = currentUser.ewallets ? currentUser.ewallets.find(w => w.type === activeWithdrawWallet) : null;
-            if(!matchedWallet) {
-                alert('Please add and bind your ' + activeWithdrawWallet + ' account first!');
-                openAddWalletModal();
-                return;
-            }
-
-            const amount = parseFloat(document.getElementById('withdraw-amount-input').value);
-            if(isNaN(amount) || amount <= 0) {
-                alert('Please enter a valid amount.');
-                return;
-            }
-            if(amount > currentUser.balance) {
-                alert('Insufficient available balance.');
-                return;
-            }
-            currentUser.balance -= amount;
-            currentUser.pnl.push({ date: new Date().toLocaleDateString(), deposit: 0, withdraw: amount, profit: -amount });
-            updateBalanceDisplay();
-            alert('Withdrawal request of ₱' + amount.toFixed(2) + ' submitted successfully!');
-            closeModal('personalCenterModal');
-        }
-
-        function renderBetRecord() {
-            const tbody = document.getElementById('bet-table-body');
-            if(!currentUser.betHistory || currentUser.betHistory.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="4" class="p-4 text-center text-gray-500">No bets placed yet.</td></tr>`;
-                return;
-            }
-            tbody.innerHTML = currentUser.betHistory.slice(-20).reverse().map(item => `
-                <tr class="border-b border-[#2a2f3d]">
-                    <td class="p-3 text-gray-400">${item.time}</td>
-                    <td class="p-3 text-white font-medium">${item.game}</td>
-                    <td class="p-3 text-yellow-400">₱${item.bet.toFixed(2)}</td>
-                    <td class="p-3 font-bold ${item.win > 0 ? 'text-green-400' : 'text-red-400'}">${item.win > 0 ? '+₱' + item.win.toFixed(2) : 'Loss (₱0.00)'}</td>
-                </tr>
-            `).join('');
-        }
-
-        function renderPnL() {
-            const tbody = document.getElementById('pnl-table-body');
-            if(!currentUser.pnl || currentUser.pnl.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="4" class="p-4 text-center text-gray-500">No recent transactions recorded.</td></tr>`;
-                return;
-            }
-            tbody.innerHTML = currentUser.pnl.map(item => `
-                <tr class="border-b border-[#2a2f3d]">
-                    <td class="p-3">${item.date}</td>
-                    <td class="p-3 text-green-400">₱${item.deposit.toFixed(2)}</td>
-                    <td class="p-3 text-red-400">₱${item.withdraw.toFixed(2)}</td>
-                    <td class="p-3 font-bold ${item.profit >= 0 ? 'text-green-400' : 'text-red-400'}">₱${item.profit.toFixed(2)}</td>
-                </tr>
-            `).join('');
+        function triggerNavAlert(sectionName) {
+            alert('Navigating to ' + sectionName + ' section.');
         }
 
         function playGame(gameName) {
@@ -959,52 +518,158 @@
                 openModal('loginModal');
                 return;
             }
-            document.getElementById('active-game-title').innerText = gameName;
-            document.getElementById('simulation-game-name').innerText = gameName;
-            document.getElementById('spin-result-msg').innerText = '';
-            openModal('gameModal');
-        }
-
-        function adjustBet(amount) {
-            currentBet = Math.max(5, currentBet + amount);
-            document.getElementById('current-bet-val').innerText = '₱' + currentBet.toFixed(2);
-        }
-
-        function executeSpin() {
-            if(currentUser.balance < currentBet) {
-                alert('Insufficient balance! Please deposit funds.');
+            if (userBalance < 10) {
+                alert('Low balance! Please deposit to continue playing.');
+                openPersonalCenter('deposit');
                 return;
             }
-            currentUser.balance -= currentBet;
-            currentUser.totalBets += currentBet;
-
-            const winMultiplier = [0, 0, 0.5, 2, 5, 10][Math.floor(Math.random() * 6)];
-            const winAmount = currentBet * winMultiplier;
-            currentUser.balance += winAmount;
             
-            const nowStr = new Date().toLocaleTimeString();
-            if(!currentUser.betHistory) currentUser.betHistory = [];
-            currentUser.betHistory.push({
-                time: nowStr,
-                game: document.getElementById('simulation-game-name').innerText,
-                bet: currentBet,
-                win: winAmount
+            userBalance -= 10;
+            totalBets += 10;
+            const won = Math.random() > 0.5;
+            const winAmount = won ? 25 : 0;
+            userBalance += winAmount;
+
+            betHistory.unshift({
+                time: new Date().toLocaleTimeString(),
+                game: gameName,
+                bet: 10,
+                result: won ? '+₱' + winAmount : 'Lost'
             });
 
-            checkVipProgression();
-            updateBalanceDisplay();
-            
-            const msg = document.getElementById('spin-result-msg');
-            if(winAmount > 0) {
-                msg.className = "text-sm font-bold text-green-400 h-6";
-                msg.innerText = `🎉 CONGRATS! You won ₱${winAmount.toFixed(2)} (${winMultiplier}X)!`;
+            updateAuthUI();
+            renderBetRecords();
+            alert('Played ' + gameName + '! Result: ' + (won ? 'Won ₱' + winAmount : 'Lost'));
+        }
+
+        function openPersonalCenter(tabName) {
+            if (!currentUser) {
+                alert('Please log in first.');
+                openModal('loginModal');
+                return;
+            }
+            openModal('personalCenterModal');
+            switchTab(tabName);
+        }
+
+        function switchTab(tabName) {
+            const tabs = ['deposit', 'withdrawal', 'myAccount', 'rewardCenter', 'betRecord', 'profitAndLoss'];
+            tabs.forEach(t => {
+                const content = document.getElementById('tab-content-' + t);
+                if (content) {
+                    if (t === tabName) {
+                        content.classList.remove('hidden');
+                    } else {
+                        content.classList.add('hidden');
+                    }
+                }
+            });
+        }
+
+        function selectDepositMethod(method) {
+            depositMethod = method;
+            const gcashBox = document.getElementById('method-gcash');
+            const mayaBox = document.getElementById('method-maya');
+            if(method === 'GCash') {
+                gcashBox.className = 'border border-yellow-500 bg-yellow-500/10 p-2.5 rounded-lg text-center cursor-pointer transition';
+                mayaBox.className = 'border border-gray-700 bg-[#12141a] p-2.5 rounded-lg text-center cursor-pointer hover:border-yellow-500 transition';
             } else {
-                msg.className = "text-sm font-bold text-red-400 h-6";
-                msg.innerText = `❌ No win this spin. Try again!`;
+                mayaBox.className = 'border border-yellow-500 bg-yellow-500/10 p-2.5 rounded-lg text-center cursor-pointer transition';
+                gcashBox.className = 'border border-gray-700 bg-[#12141a] p-2.5 rounded-lg text-center cursor-pointer hover:border-yellow-500 transition';
             }
         }
 
-        window.onload = initApp;
+        function setDepositAmount(amt) {
+            depositAmount = amt;
+            document.getElementById('deposit-amount-input').value = amt;
+        }
+
+        // Opens the Chrome-routed secure payment tab with your exact GCash QR code
+        function proceedDepositGateway() {
+            const customInputVal = document.getElementById('deposit-amount-input').value;
+            const finalAmount = customInputVal ? customInputVal : depositAmount;
+
+            const paymentWindow = window.open('', '_blank');
+            paymentWindow.document.write(`
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>PaldoWin Secure Payment Gateway - GCash</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; background: #002D62; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+                        .gateway-card { background: white; color: #333; padding: 25px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); width: 340px; text-align: center; }
+                        .qr-image { width: 100%; max-width: 260px; height: auto; border-radius: 8px; margin: 15px 0; border: 1px solid #ddd; }
+                        .amount-display { font-size: 22px; font-weight: bold; color: #007bff; margin-bottom: 10px; }
+                        .account-details { font-size: 13px; color: #555; background: #f8f9fa; padding: 10px; border-radius: 6px; margin-top: 10px; text-align: left; line-height: 1.4; }
+                    </style>
+                </head>
+                <body>
+                    <div class="gateway-card">
+                        <h2>GCash Secure Payment</h2>
+                        <div class="amount-display">Amount Due: ₱${finalAmount}</div>
+                        <p style="font-size: 14px; color: #666;">Scan the QR code using your GCash app to complete deposit:</p>
+                        
+                        <!-- Embedded GCash QR Code Provided -->
+                        <img src="GCash-MyQR-25092026043600.PNG.jpg" alt="GCash QR Code" class="qr-image">
+
+                        <div class="account-details">
+                            <strong>Account Name:</strong> SA**H M** C.<br>
+                            <strong>Mobile No:</strong> +63 992 023 ****<br>
+                            <strong>User ID:</strong> .........95IVGM
+                        </div>
+                    </div>
+                </body>
+                </html>
+            `);
+            paymentWindow.document.close();
+        }
+
+        function selectWithdrawWallet(wallet) {
+            alert('Selected withdrawal wallet: ' + wallet);
+        }
+
+        function setWithdrawAmount(amt) {
+            document.getElementById('withdraw-amount-input').value = amt;
+        }
+
+        function submitWithdrawal() {
+            const amt = parseFloat(document.getElementById('withdraw-amount-input').value);
+            if (!amt || amt <= 0) {
+                alert('Please enter a valid withdrawal amount.');
+                return;
+            }
+            if (amt > userBalance) {
+                alert('Insufficient central wallet balance.');
+                return;
+            }
+            userBalance -= amt;
+            updateAuthUI();
+            alert('Withdrawal request of ₱' + amt + ' submitted successfully!');
+            closeModal('personalCenterModal');
+        }
+
+        function claimReward() {
+            userBalance += 10;
+            updateAuthUI();
+            alert('Successfully claimed ₱10.00 daily reward!');
+        }
+
+        function renderBetRecords() {
+            const tbody = document.getElementById('bet-table-body');
+            if (betHistory.length === 0) return;
+            tbody.innerHTML = '';
+            betHistory.forEach(b => {
+                tbody.innerHTML += `
+                    <tr class="border-b border-[#2a2f3d]">
+                        <td class="p-3">${b.time}</td>
+                        <td class="p-3">${b.game}</td>
+                        <td class="p-3">₱${b.bet}</td>
+                        <td class="p-3 font-bold ${b.result.includes('Lost') ? 'text-red-400' : 'text-green-400'}">${b.result}</td>
+                    </tr>
+                `;
+            });
+        }
     </script>
 </body>
 </html>
