@@ -17,10 +17,10 @@
 </head>
 <body class="min-h-screen flex flex-col">
 
-    <!-- Top Utility Bar -->
+    <!-- Top Utility Bar (Notice removed as requested) -->
     <div class="bg-[#12141a] border-b border-[#2a2f3d] text-xs py-1.5 px-4 flex justify-between items-center text-gray-400">
         <div class="flex items-center space-x-4">
-            <span class="flex items-center"><i class="fa-solid fa-volume-high text-yellow-500 mr-1.5"></i> Notice: Deposit 150 Get Free 158 Bonus!</span>
+            <span class="flex items-center"><i class="fa-solid fa-headset text-yellow-500 mr-1.5"></i> 24/7 Customer Support Available</span>
         </div>
         <div class="flex items-center space-x-4">
             <span class="text-yellow-400 font-medium"><i class="fa-solid fa-star mr-1"></i> Be An Agent and Earn 388PHP For Every Referral</span>
@@ -33,7 +33,7 @@
             <!-- Logo -->
             <div class="flex items-center space-x-3">
                 <span class="text-2xl font-black tracking-wider text-transparent bg-clip-text gold-gradient">PALDOWIN</span>
-                <span class="hidden md:inline-block bg-yellow-500/10 text-yellow-500 text-xs px-2 py-0.5 rounded border border-yellow-500/30">VIP6</span>
+                <span id="header-vip-badge" class="hidden md:inline-block bg-gray-800 text-gray-300 text-xs px-2 py-0.5 rounded border border-gray-700">VIP 0</span>
             </div>
 
             <!-- User Auth / Wallet State -->
@@ -48,7 +48,7 @@
                 <div id="logged-in-nav" class="hidden flex items-center space-x-3">
                     <div class="bg-[#12141a] border border-[#2a2f3d] px-3 py-1 rounded flex items-center space-x-2">
                         <span class="text-xs text-gray-400">Balance:</span>
-                        <span id="user-balance-display" class="text-yellow-400 font-bold">₱0.40</span>
+                        <span id="user-balance-display" class="text-yellow-400 font-bold">₱0.00</span>
                         <button onclick="refreshBalance()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-rotate-right text-xs"></i></button>
                     </div>
                     <button onclick="openPersonalCenter('deposit')" class="gold-gradient text-black px-3 py-1 rounded text-xs font-bold flex items-center space-x-1">
@@ -68,13 +68,13 @@
         <!-- Navigation Categories -->
         <nav class="max-w-7xl mx-auto mt-3 overflow-x-auto flex space-x-6 text-sm pb-1 scrollbar-none">
             <a href="#" class="text-yellow-400 font-bold flex flex-col items-center space-y-1 shrink-0"><i class="fa-solid fa-house text-lg"></i><span>HOME</span></a>
-            <a href="#slots" class="text-gray-400 hover:text-yellow-400 flex flex-col items-center space-y-1 shrink-0"><i class="fa-solid fa-gamepad text-lg"></i><span>SLOTS</span></a>
-            <a href="#fishing" class="text-gray-400 hover:text-yellow-400 flex flex-col items-center space-y-1 shrink-0"><i class="fa-solid fa-fish text-lg"></i><span>FISHING</span></a>
-            <a href="#live" class="text-gray-400 hover:text-yellow-400 flex flex-col items-center space-y-1 shrink-0"><i class="fa-solid fa-video text-lg"></i><span>LIVE CASINO</span></a>
-            <a href="#arcade" class="text-gray-400 hover:text-yellow-400 flex flex-col items-center space-y-1 shrink-0"><i class="fa-solid fa-dice text-lg"></i><span>ARCADE</span></a>
-            <a href="#sports" class="text-gray-400 hover:text-yellow-400 flex flex-col items-center space-y-1 shrink-0"><i class="fa-solid fa-futbol text-lg"></i><span>SPORTS</span></a>
-            <a href="#lottery" class="text-gray-400 hover:text-yellow-400 flex flex-col items-center space-y-1 shrink-0"><i class="fa-solid fa-ticket text-lg"></i><span>LOTTERY</span></a>
-            <a href="#promos" class="text-gray-400 hover:text-yellow-400 flex flex-col items-center space-y-1 shrink-0"><i class="fa-solid fa-gift text-lg"></i><span>PROMOTIONS</span></a>
+            <a href="#slots" onclick="triggerNavAlert('Slots')" class="text-gray-400 hover:text-yellow-400 flex flex-col items-center space-y-1 shrink-0"><i class="fa-solid fa-gamepad text-lg"></i><span>SLOTS</span></a>
+            <a href="#fishing" onclick="triggerNavAlert('Fishing')" class="text-gray-400 hover:text-yellow-400 flex flex-col items-center space-y-1 shrink-0"><i class="fa-solid fa-fish text-lg"></i><span>FISHING</span></a>
+            <a href="#live" onclick="triggerNavAlert('Live Casino')" class="text-gray-400 hover:text-yellow-400 flex flex-col items-center space-y-1 shrink-0"><i class="fa-solid fa-video text-lg"></i><span>LIVE CASINO</span></a>
+            <a href="#arcade" onclick="triggerNavAlert('Arcade')" class="text-gray-400 hover:text-yellow-400 flex flex-col items-center space-y-1 shrink-0"><i class="fa-solid fa-dice text-lg"></i><span>ARCADE</span></a>
+            <a href="#sports" onclick="triggerNavAlert('Sports')" class="text-gray-400 hover:text-yellow-400 flex flex-col items-center space-y-1 shrink-0"><i class="fa-solid fa-futbol text-lg"></i><span>SPORTS</span></a>
+            <a href="#lottery" onclick="triggerNavAlert('Lottery')" class="text-gray-400 hover:text-yellow-400 flex flex-col items-center space-y-1 shrink-0"><i class="fa-solid fa-ticket text-lg"></i><span>LOTTERY</span></a>
+            <a href="#promos" onclick="triggerNavAlert('Promotions')" class="text-gray-400 hover:text-yellow-400 flex flex-col items-center space-y-1 shrink-0"><i class="fa-solid fa-gift text-lg"></i><span>PROMOTIONS</span></a>
         </nav>
     </header>
 
@@ -242,6 +242,8 @@
                     <button onclick="switchTab('deposit')" id="tab-btn-deposit" class="w-full text-left px-3 py-2.5 rounded text-xs font-medium text-gray-300 hover:bg-[#181b22] flex items-center space-x-2"><i class="fa-solid fa-wallet text-yellow-500 w-5"></i><span>Deposit</span></button>
                     <button onclick="switchTab('withdrawal')" id="tab-btn-withdrawal" class="w-full text-left px-3 py-2.5 rounded text-xs font-medium text-gray-300 hover:bg-[#181b22] flex items-center space-x-2"><i class="fa-solid fa-money-bill-transfer text-yellow-500 w-5"></i><span>Withdrawal</span></button>
                     <button onclick="switchTab('myAccount')" id="tab-btn-myAccount" class="w-full text-left px-3 py-2.5 rounded text-xs font-medium text-gray-300 hover:bg-[#181b22] flex items-center space-x-2"><i class="fa-solid fa-user text-yellow-500 w-5"></i><span>My Account</span></button>
+                    <button onclick="switchTab('rewardCenter')" id="tab-btn-rewardCenter" class="w-full text-left px-3 py-2.5 rounded text-xs font-medium text-gray-300 hover:bg-[#181b22] flex items-center space-x-2"><i class="fa-solid fa-gift text-yellow-500 w-5"></i><span>Reward Center</span></button>
+                    <button onclick="switchTab('betRecord')" id="tab-btn-betRecord" class="w-full text-left px-3 py-2.5 rounded text-xs font-medium text-gray-300 hover:bg-[#181b22] flex items-center space-x-2"><i class="fa-solid fa-dice text-yellow-500 w-5"></i><span>Bet Record</span></button>
                     <button onclick="switchTab('profitAndLoss')" id="tab-btn-profitAndLoss" class="w-full text-left px-3 py-2.5 rounded text-xs font-medium text-gray-300 hover:bg-[#181b22] flex items-center space-x-2"><i class="fa-solid fa-chart-line text-yellow-500 w-5"></i><span>Profit and Loss</span></button>
                 </div>
             </div>
@@ -255,31 +257,11 @@
                     <h3 class="text-sm font-bold text-gray-300 uppercase tracking-wide">Deposit Method</h3>
                     
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                        <div onclick="selectDepositMethod('GCash')" id="method-gcash" class="border border-gray-700 bg-[#12141a] p-2.5 rounded-lg text-center cursor-pointer hover:border-yellow-500 transition">
+                        <div onclick="selectDepositMethod('GCash')" id="method-gcash" class="border border-yellow-500 bg-yellow-500/10 p-2.5 rounded-lg text-center cursor-pointer transition">
                             <div class="font-bold text-xs text-white">GCash</div>
                         </div>
                         <div onclick="selectDepositMethod('Maya')" id="method-maya" class="border border-gray-700 bg-[#12141a] p-2.5 rounded-lg text-center cursor-pointer hover:border-yellow-500 transition">
-                            <div class="font-bold text-xs text-white">Maya <span class="text-[9px] text-yellow-400">+2%</span></div>
-                        </div>
-                        <div onclick="selectDepositMethod('GCashQR')" id="method-gcashqr" class="border border-yellow-500 bg-yellow-500/10 p-2.5 rounded-lg text-center cursor-pointer relative transition">
-                            <span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-red-500"></span>
-                            <div class="font-bold text-xs text-white">GCashQR</div>
-                        </div>
-                        <div onclick="selectDepositMethod('Online Banking')" id="method-banking" class="border border-gray-700 bg-[#12141a] p-2.5 rounded-lg text-center cursor-pointer hover:border-yellow-500 transition">
-                            <div class="font-bold text-xs text-white">Online Banking</div>
-                        </div>
-                    </div>
-
-                    <div id="deposit-notice-box" class="bg-[#12141a] border border-[#2a2f3d] p-3 rounded-lg text-[11px] text-gray-400 leading-relaxed">
-                        Dear customer, when using the GCash scan QR code channel, please make sure that the phone number and payment number are consistent. If they are not consistent, please fill in the last 6 digits of the transaction number on the webpage after completing the payment.
-                    </div>
-
-                    <div>
-                        <div class="text-xs font-bold text-gray-400 mb-2">Payment Channel</div>
-                        <div class="flex flex-wrap gap-2">
-                            <button class="px-3 py-1.5 rounded bg-red-600/20 border border-red-500 text-red-400 text-xs font-bold">G-Cash QR.19</button>
-                            <button class="px-3 py-1.5 rounded bg-[#12141a] border border-[#2a2f3d] text-gray-300 text-xs">G-Cash QR.9</button>
-                            <button class="px-3 py-1.5 rounded bg-[#12141a] border border-[#2a2f3d] text-gray-300 text-xs">G-Cash QR.14</button>
+                            <div class="font-bold text-xs text-white">Maya</div>
                         </div>
                     </div>
 
@@ -300,24 +282,10 @@
                         </div>
                     </div>
 
-                    <div>
-                        <div class="text-xs font-bold text-gray-400 mb-2">Promotions</div>
-                        <div class="space-y-2 text-xs">
-                            <label class="flex items-center space-x-2 bg-[#12141a] p-2.5 rounded border border-[#2a2f3d] cursor-pointer">
-                                <input type="radio" name="promo" checked class="text-yellow-500">
-                                <span>Do not participate in any promotions</span>
-                            </label>
-                            <label class="flex items-center space-x-2 bg-[#12141a] p-2.5 rounded border border-[#2a2f3d] cursor-pointer">
-                                <input type="radio" name="promo" class="text-yellow-500">
-                                <span>DAILY FIRST CASH-IN BONUS (1/1) <span class="text-yellow-400 font-bold ml-auto">≥ ₱ 200.00</span></span>
-                            </label>
-                        </div>
-                    </div>
-
                     <button onclick="proceedDepositGateway()" class="w-full gold-gradient text-black font-ext500 py-3 rounded-lg text-sm shadow hover:opacity-90 transition">Next</button>
                 </div>
 
-                <!-- Withdrawal Tab Content (Dynamic Add E-Wallet) -->
+                <!-- Withdrawal Tab Content -->
                 <div id="tab-content-withdrawal" class="p-6 space-y-5 hidden">
                     <div class="flex items-center space-x-4 border-b border-[#2a2f3d] pb-3">
                         <button onclick="selectWithdrawWallet('GCash')" id="w-tab-gcash" class="px-4 py-2 rounded-lg border-2 border-blue-500 bg-blue-500/10 text-white font-bold text-xs flex items-center space-x-2">
@@ -329,14 +297,9 @@
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <!-- Dynamic Bound Card Container / Add Button -->
                         <div class="md:col-span-2">
-                            <div id="bound-card-container">
-                                <!-- Populated dynamically: Shows either the saved e-wallet card OR the + Add Account button -->
-                            </div>
+                            <div id="bound-card-container"></div>
                         </div>
-
-                        <!-- Withdrawal Time Notice Box -->
                         <div class="bg-[#12141a] p-4 rounded-2xl border border-[#2a2f3d] text-xs space-y-2">
                             <div class="text-amber-500 font-bold flex items-center space-x-1">
                                 <i class="fa-solid fa-clock"></i>
@@ -344,24 +307,22 @@
                             </div>
                             <div class="text-red-400 font-bold">24 hours</div>
                             <p class="text-gray-400 text-[11px] leading-relaxed">
-                                Note: Please make sure that your E-Wallet has been verified for withdrawal application. If the verification is not completed, it will not be credited to the account.
+                                Note: Please make sure that your E-Wallet has been verified for withdrawal application.
                             </p>
                         </div>
                     </div>
 
-                    <!-- Wallet balances -->
                     <div class="grid grid-cols-2 gap-4 bg-[#12141a] p-3 rounded-lg border border-[#2a2f3d] text-xs">
                         <div>
                             <span class="text-gray-400">Central Wallet:</span>
-                            <span id="withdraw-central-bal" class="text-white font-bold ml-2">₱0.40</span>
+                            <span id="withdraw-central-bal" class="text-white font-bold ml-2">₱0.00</span>
                         </div>
                         <div>
                             <span class="text-gray-400">Available Amount:</span>
-                            <span id="withdraw-available-bal" class="text-yellow-400 font-bold ml-2">₱0.40</span>
+                            <span id="withdraw-available-bal" class="text-yellow-400 font-bold ml-2">₱0.00</span>
                         </div>
                     </div>
 
-                    <!-- Preset Amount Buttons Grid -->
                     <div>
                         <div class="text-xs font-bold text-gray-400 mb-2">Withdrawal Amount</div>
                         <div class="grid grid-cols-3 sm:grid-cols-3 gap-2">
@@ -370,22 +331,14 @@
                             <button onclick="setWithdrawAmount(500)" class="bg-[#12141a] border border-[#2a2f3d] hover:border-yellow-500 py-2 rounded text-xs text-white font-bold">500</button>
                             <button onclick="setWithdrawAmount(800)" class="bg-[#12141a] border border-[#2a2f3d] hover:border-yellow-500 py-2 rounded text-xs text-white font-bold">800</button>
                             <button onclick="setWithdrawAmount(1000)" class="bg-[#12141a] border border-[#2a2f3d] hover:border-yellow-500 py-2 rounded text-xs text-white font-bold">1,000</button>
-                            <button onclick="setWithdrawAmount(2000)" class="bg-[#12141a] border border-[#2a2f3d] hover:border-yellow-500 py-2 rounded text-xs text-white font-bold">2,000</button>
                             <button onclick="setWithdrawAmount(5000)" class="bg-[#12141a] border border-[#2a2f3d] hover:border-yellow-500 py-2 rounded text-xs text-white font-bold">5,000</button>
-                            <button onclick="setWithdrawAmount(10000)" class="bg-[#12141a] border border-[#2a2f3d] hover:border-yellow-500 py-2 rounded text-xs text-white font-bold">10,000</button>
-                            <button onclick="setWithdrawAmount(15000)" class="bg-[#12141a] border border-[#2a2f3d] hover:border-yellow-500 py-2 rounded text-xs text-white font-bold">15,000</button>
                         </div>
                         <div class="mt-2">
                             <input type="number" id="withdraw-amount-input" placeholder="Enter custom amount" class="w-full px-3 py-2 rounded custom-input text-xs">
                         </div>
                     </div>
 
-                    <div class="flex items-center justify-between pt-2">
-                        <button onclick="submitWithdrawal()" class="w-full bg-gradient-to-r from-red-600 to-rose-700 hover:opacity-90 text-white font-bold py-3 rounded-lg text-sm shadow transition">Submit</button>
-                    </div>
-                    <div class="text-center text-xs text-gray-400">
-                        Remaining Number of Withdrawal Today: <span class="text-red-500 font-bold">20</span>
-                    </div>
+                    <button onclick="submitWithdrawal()" class="w-full bg-gradient-to-r from-red-600 to-rose-700 hover:opacity-90 text-white font-bold py-3 rounded-lg text-sm shadow transition">Submit</button>
                 </div>
 
                 <!-- My Account Tab Content -->
@@ -401,9 +354,50 @@
                             <span id="profile-mobile" class="text-white font-bold">-</span>
                         </div>
                         <div class="flex justify-between py-2 border-b border-[#2a2f3d]">
-                            <span class="text-gray-400">VIP Level:</span>
-                            <span class="text-yellow-400 font-bold">VIP 6</span>
+                            <span class="text-gray-400">Platform Name:</span>
+                            <span class="text-yellow-400 font-bold">PaldoWin</span>
                         </div>
+                        <div class="flex justify-between py-2 border-b border-[#2a2f3d]">
+                            <span class="text-gray-400">VIP Level:</span>
+                            <span id="profile-vip" class="text-yellow-400 font-bold">VIP 0</span>
+                        </div>
+                        <div class="flex justify-between py-2 border-b border-[#2a2f3d]">
+                            <span class="text-gray-400">Total Accumulated Bets:</span>
+                            <span id="profile-total-bets" class="text-white font-bold">₱0.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reward Center Tab Content -->
+                <div id="tab-content-rewardCenter" class="p-6 space-y-6 hidden">
+                    <h3 class="text-lg font-bold text-white border-b border-[#2a2f3d] pb-3 flex items-center space-x-2">
+                        <i class="fa-solid fa-gift text-yellow-500"></i>
+                        <span>VIP Reward Center</span>
+                    </h3>
+                    <div id="reward-list-container" class="space-y-3">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+
+                <!-- Bet Record Tab Content -->
+                <div id="tab-content-betRecord" class="p-6 space-y-6 hidden">
+                    <h3 class="text-lg font-bold text-white border-b border-[#2a2f3d] pb-3">Betting History</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs text-gray-300">
+                            <thead class="bg-[#12141a] text-gray-400 uppercase">
+                                <tr>
+                                    <th class="p-3">Time</th>
+                                    <th class="p-3">Game</th>
+                                    <th class="p-3">Bet Amount</th>
+                                    <th class="p-3">Result / Win</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bet-table-body">
+                                <tr>
+                                    <td colspan="4" class="p-4 text-center text-gray-500">No bets placed yet.</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
@@ -433,7 +427,7 @@
         </div>
     </div>
 
-    <!-- ADD E-WALLET ACCOUNT MODAL (Account Name & Phone Number) -->
+    <!-- ADD E-WALLET ACCOUNT MODAL -->
     <div id="addWalletModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden">
         <div class="bg-[#181b22] border border-[#2a2f3d] w-full max-w-sm rounded-xl p-6 relative shadow-2xl space-y-4">
             <button onclick="closeModal('addWalletModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
@@ -457,7 +451,7 @@
         </div>
     </div>
 
-    <!-- 4. EXTERNAL GCASH PAYMENT GATEWAY SIMULATION MODAL -->
+    <!-- EXTERNAL GCASH PAYMENT GATEWAY SIMULATION MODAL -->
     <div id="gatewayModal" class="fixed inset-0 bg-white z-50 flex flex-col hidden text-slate-800">
         <div class="bg-blue-600 text-white px-6 py-4 flex justify-between items-center shadow">
             <div class="flex items-center space-x-2 font-bold text-lg">
@@ -468,13 +462,15 @@
         </div>
         <div class="flex-grow flex flex-col items-center justify-center p-6 bg-slate-50 space-y-6">
             <div class="bg-white p-6 rounded-2xl shadow-xl border border-slate-200 max-w-sm w-full text-center space-y-4">
-                <div class="text-blue-600 font-ext500 text-sm">Securely complete payment with your GCash App</div>
+                <div class="text-blue-600 font-bold text-sm">Scan QR Code or Use Phone Number Below</div>
+                
+                <!-- QR Code provided by user -->
                 <div class="bg-slate-100 p-4 rounded-xl flex items-center justify-center">
                     <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=09920232506" alt="GCash QR" class="w-44 h-44 object-contain">
                 </div>
+
                 <div class="text-xs text-slate-600 space-y-1">
-                    <p><strong>Test Number:</strong> 09920232506</p>
-                    <p><strong>Account Name:</strong> SA**H M** C.</p>
+                    <p class="font-semibold text-slate-700">Phone Number: <span class="text-blue-600 font-bold">09920232506</span></p>
                     <p class="text-red-500 font-bold text-sm">Amount: <span id="gateway-amount-display">₱500.00</span></p>
                 </div>
                 <button onclick="completeGatewayPayment()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl text-sm shadow transition">I Have Completed Payment</button>
@@ -482,12 +478,12 @@
         </div>
     </div>
 
-    <!-- 5. GAME PLAY MODAL -->
+    <!-- GAME PLAY MODAL -->
     <div id="gameModal" class="fixed inset-0 bg-black/90 z-50 flex flex-col hidden">
         <div class="bg-[#181b22] px-6 py-3 border-b border-[#2a2f3d] flex justify-between items-center">
             <div class="flex items-center space-x-3">
                 <span id="active-game-title" class="text-yellow-400 font-bold text-lg">Game</span>
-                <span class="text-xs bg-green-500/10 text-green-400 px-2 py-0.5 rounded border border-green-500/30">Live Balance: <span id="game-modal-balance">₱0.40</span></span>
+                <span class="text-xs bg-green-500/10 text-green-400 px-2 py-0.5 rounded border border-green-500/30">Live Balance: <span id="game-modal-balance">₱0.00</span></span>
             </div>
             <button onclick="closeModal('gameModal')" class="bg-red-600 hover:bg-red-500 text-white px-3 py-1 rounded text-xs font-bold"><i class="fa-solid fa-xmark mr-1"></i> Exit Game</button>
         </div>
@@ -504,7 +500,7 @@
                     <span id="current-bet-val" class="text-yellow-400 font-bold text-base">₱20.00</span>
                     <button onclick="adjustBet(10)" class="bg-gray-800 px-3 py-1 rounded text-white">+</button>
                 </div>
-                <button onclick="executeSpin()" class="w-full gold-gradient text-black font-ext500 py-3 rounded-xl text-base shadow-lg hover:opacity-90 transition">SPIN NOW</button>
+                <button onclick="executeSpin()" class="w-full gold-gradient text-black font-bold py-3 rounded-xl text-base shadow-lg hover:opacity-90 transition">SPIN NOW</button>
                 <div id="spin-result-msg" class="text-sm font-bold text-gray-300 h-6"></div>
             </div>
         </div>
@@ -517,14 +513,39 @@
         let selectedDepositAmt = 500;
         let activeWithdrawWallet = 'GCash';
 
+        // VIP Threshold Tiers (VIP 0 to VIP 10)
+        const vipThresholds = [
+            { level: 0, requiredBets: 0, reward: 0 },
+            { level: 1, requiredBets: 20000, reward: 50 },
+            { level: 2, requiredBets: 60000, reward: 150 },
+            { level: 3, requiredBets: 150000, reward: 300 },
+            { level: 4, requiredBets: 350000, reward: 800 },
+            { level: 5, requiredBets: 800000, reward: 1800 },
+            { level: 6, requiredBets: 1800000, reward: 3800 },
+            { level: 7, requiredBets: 3800000, reward: 8000 },
+            { level: 8, requiredBets: 8000000, reward: 18000 },
+            { level: 9, requiredBets: 16000000, reward: 38000 },
+            { level: 10, requiredBets: 35000000, reward: 80000 }
+        ];
+
         function initApp() {
             if (currentUser) {
+                // Ensure new default fields exist
+                if (currentUser.vipLevel === undefined) currentUser.vipLevel = 0;
+                if (currentUser.totalBets === undefined) currentUser.totalBets = 0;
+                if (currentUser.rewards === undefined) currentUser.rewards = {};
+                if (!currentUser.betHistory) currentUser.betHistory = [];
+                if (!currentUser.pnl) currentUser.pnl = [];
+                if (!currentUser.ewallets) currentUser.ewallets = [];
+
                 document.getElementById('logged-out-nav').classList.add('hidden');
                 document.getElementById('logged-in-nav').classList.remove('hidden');
+                document.getElementById('header-vip-badge').innerText = 'VIP ' + currentUser.vipLevel;
                 updateBalanceDisplay();
             } else {
                 document.getElementById('logged-out-nav').classList.remove('hidden');
                 document.getElementById('logged-in-nav').classList.add('hidden');
+                document.getElementById('header-vip-badge').innerText = 'VIP 0';
             }
         }
 
@@ -535,12 +556,17 @@
             document.getElementById('withdraw-central-bal').innerText = formatted;
             document.getElementById('withdraw-available-bal').innerText = formatted;
             document.getElementById('game-modal-balance').innerText = formatted;
+            document.getElementById('header-vip-badge').innerText = 'VIP ' + currentUser.vipLevel;
             localStorage.setItem('paldowin_user', JSON.stringify(currentUser));
         }
 
         function refreshBalance() {
             alert('Balance synchronized successfully!');
             updateBalanceDisplay();
+        }
+
+        function triggerNavAlert(categoryName) {
+            alert(categoryName + ' category is coming soon!');
         }
 
         function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
@@ -573,7 +599,11 @@
             currentUser = { 
                 username, 
                 mobile, 
-                balance: 100.00, 
+                balance: 0.00,
+                vipLevel: 0,
+                totalBets: 0,
+                rewards: {},
+                betHistory: [],
                 pnl: [],
                 ewallets: []
             };
@@ -581,7 +611,7 @@
             
             closeModal('registerModal');
             initApp();
-            alert('Registration successful! Welcome bonus of ₱100 added.');
+            alert('Registration successful! Welcome to PaldoWin.');
         }
 
         function handleLogin(e) {
@@ -592,7 +622,11 @@
                 currentUser = { 
                     username, 
                     mobile: '09920232506', 
-                    balance: 0.40, 
+                    balance: 0.00, 
+                    vipLevel: 0,
+                    totalBets: 0,
+                    rewards: {},
+                    betHistory: [],
                     pnl: [],
                     ewallets: []
                 };
@@ -619,20 +653,86 @@
             document.getElementById('pc-username').innerText = currentUser.username;
             document.getElementById('profile-username').innerText = currentUser.username;
             document.getElementById('profile-mobile').innerText = currentUser.mobile;
+            document.getElementById('profile-vip').innerText = 'VIP ' + currentUser.vipLevel;
+            document.getElementById('profile-total-bets').innerText = '₱' + currentUser.totalBets.toFixed(2);
             updateWithdrawCardUI();
             openModal('personalCenterModal');
             switchTab(tabName);
         }
 
         function switchTab(tabName) {
-            ['deposit', 'withdrawal', 'myAccount', 'profitAndLoss'].forEach(t => {
-                document.getElementById('tab-content-' + t).classList.add('hidden');
-                document.getElementById('tab-btn-' + t).classList.remove('bg-[#181b22]', 'text-yellow-400');
+            ['deposit', 'withdrawal', 'myAccount', 'rewardCenter', 'betRecord', 'profitAndLoss'].forEach(t => {
+                const el = document.getElementById('tab-content-' + t);
+                const btn = document.getElementById('tab-btn-' + t);
+                if(el) el.classList.add('hidden');
+                if(btn) btn.classList.remove('bg-[#181b22]', 'text-yellow-400');
             });
-            document.getElementById('tab-content-' + tabName).classList.remove('hidden');
-            document.getElementById('tab-btn-' + tabName).classList.add('bg-[#181b22]', 'text-yellow-400');
+            const activeEl = document.getElementById('tab-content-' + tabName);
+            const activeBtn = document.getElementById('tab-btn-' + tabName);
+            if(activeEl) activeEl.classList.remove('hidden');
+            if(activeBtn) activeBtn.classList.add('bg-[#181b22]', 'text-yellow-400');
 
+            if(tabName === 'rewardCenter') renderRewardCenter();
+            if(tabName === 'betRecord') renderBetRecord();
             if(tabName === 'profitAndLoss') renderPnL();
+        }
+
+        function checkVipProgression() {
+            let newLevel = 0;
+            for (let i = vipThresholds.length - 1; i >= 0; i--) {
+                if (currentUser.totalBets >= vipThresholds[i].requiredBets) {
+                    newLevel = vipThresholds[i].level;
+                    break;
+                }
+            }
+            if (newLevel > currentUser.vipLevel) {
+                currentUser.vipLevel = newLevel;
+                alert('🎉 Congratulations! You have unlocked VIP ' + newLevel + '! Check your Reward Center to claim your VIP reward.');
+            }
+            document.getElementById('header-vip-badge').innerText = 'VIP ' + currentUser.vipLevel;
+            document.getElementById('profile-vip').innerText = 'VIP ' + currentUser.vipLevel;
+            document.getElementById('profile-total-bets').innerText = '₱' + currentUser.totalBets.toFixed(2);
+        }
+
+        function renderRewardCenter() {
+            const container = document.getElementById('reward-list-container');
+            let html = '';
+
+            for (let i = 1; i < vipThresholds.length; i++) {
+                const tier = vipThresholds[i];
+                const isUnlocked = currentUser.vipLevel >= tier.level;
+                const isClaimed = currentUser.rewards && currentUser.rewards[tier.level] === 'claimed';
+
+                let statusBtn = '';
+                if (isClaimed) {
+                    statusBtn = `<span class="bg-gray-800 text-gray-400 px-4 py-1.5 rounded text-xs font-bold">Claimed</span>`;
+                } else if (isUnlocked) {
+                    statusBtn = `<button onclick="claimVipReward(${tier.level}, ${tier.reward})" class="gold-gradient text-black px-4 py-1.5 rounded text-xs font-bold shadow hover:opacity-90">Claim ₱${tier.reward}</button>`;
+                } else {
+                    statusBtn = `<span class="text-gray-500 text-xs">Locked (Need ₱${tier.requiredBets.toLocaleString()} bets)</span>`;
+                }
+
+                html += `
+                    <div class="bg-[#12141a] p-4 rounded-xl border border-[#2a2f3d] flex items-center justify-between">
+                        <div>
+                            <div class="text-sm font-bold text-white">VIP ${tier.level} Upgrade Reward</div>
+                            <div class="text-xs text-yellow-500 mt-0.5">Reward Amount: ₱${tier.reward.toFixed(2)}</div>
+                            <div class="text-[11px] text-gray-400 mt-1">Requirement: Total Bets Reached ₱${tier.requiredBets.toLocaleString()}</div>
+                        </div>
+                        <div>${statusBtn}</div>
+                    </div>
+                `;
+            }
+            container.innerHTML = html;
+        }
+
+        function claimVipReward(level, amount) {
+            if(!currentUser.rewards) currentUser.rewards = {};
+            currentUser.rewards[level] = 'claimed';
+            currentUser.balance += amount;
+            updateBalanceDisplay();
+            renderRewardCenter();
+            alert('Successfully claimed VIP ' + level + reward + ' ₱' + amount + ' bonus!');
         }
 
         function selectWithdrawWallet(walletType) {
@@ -651,12 +751,10 @@
             if(!currentUser) return;
             if(!currentUser.ewallets) currentUser.ewallets = [];
             
-            // Find saved wallet matching active tab type
             const matchedWallet = currentUser.ewallets.find(w => w.type === activeWithdrawWallet);
             const container = document.getElementById('bound-card-container');
 
             if (matchedWallet) {
-                // Show bound account card
                 const masked = '*******' + matchedWallet.number.slice(-4);
                 container.innerHTML = `
                     <div class="bg-gradient-to-r ${matchedWallet.type === 'GCash' ? 'from-blue-600 to-sky-500' : 'from-emerald-600 to-green-500'} p-5 rounded-2xl shadow-lg relative flex flex-col justify-between h-36">
@@ -671,7 +769,6 @@
                     </div>
                 `;
             } else {
-                // Show + Add Account Button
                 container.innerHTML = `
                     <button onclick="openAddWalletModal()" class="w-full h-36 rounded-2xl border-2 border-dashed border-gray-600 hover:border-yellow-500 bg-[#12141a] hover:bg-gray-800/50 flex flex-col items-center justify-center space-y-2 transition group">
                         <div class="w-10 h-10 rounded-full bg-gray-800 group-hover:bg-yellow-500 group-hover:text-black flex items-center justify-center text-gray-300 transition text-lg font-bold">
@@ -705,7 +802,6 @@
             }
 
             if(!currentUser.ewallets) currentUser.ewallets = [];
-            // Remove existing for this provider if any
             currentUser.ewallets = currentUser.ewallets.filter(w => w.type !== provider);
             
             currentUser.ewallets.push({ 
@@ -736,6 +832,16 @@
         function setDepositAmount(amount) {
             selectedDepositAmt = amount;
             document.getElementById('deposit-amount-input').value = amount;
+        }
+
+        function selectDepositMethod(method) {
+            if(method === 'GCash') {
+                document.getElementById('method-gcash').className = "border border-yellow-500 bg-yellow-500/10 p-2.5 rounded-lg text-center cursor-pointer transition";
+                document.getElementById('method-maya').className = "border border-gray-700 bg-[#12141a] p-2.5 rounded-lg text-center cursor-pointer hover:border-yellow-500 transition";
+            } else {
+                document.getElementById('method-maya').className = "border border-yellow-500 bg-yellow-500/10 p-2.5 rounded-lg text-center cursor-pointer transition";
+                document.getElementById('method-gcash').className = "border border-gray-700 bg-[#12141a] p-2.5 rounded-lg text-center cursor-pointer hover:border-yellow-500 transition";
+            }
         }
 
         function proceedDepositGateway() {
@@ -782,6 +888,22 @@
             closeModal('personalCenterModal');
         }
 
+        function renderBetRecord() {
+            const tbody = document.getElementById('bet-table-body');
+            if(!currentUser.betHistory || currentUser.betHistory.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="4" class="p-4 text-center text-gray-500">No bets placed yet.</td></tr>`;
+                return;
+            }
+            tbody.innerHTML = currentUser.betHistory.slice(-20).reverse().map(item => `
+                <tr class="border-b border-[#2a2f3d]">
+                    <td class="p-3 text-gray-400">${item.time}</td>
+                    <td class="p-3 text-white font-medium">${item.game}</td>
+                    <td class="p-3 text-yellow-400">₱${item.bet.toFixed(2)}</td>
+                    <td class="p-3 font-bold ${item.win > 0 ? 'text-green-400' : 'text-red-400'}">${item.win > 0 ? '+₱' + item.win.toFixed(2) : 'Loss (₱0.00)'}</td>
+                </tr>
+            `).join('');
+        }
+
         function renderPnL() {
             const tbody = document.getElementById('pnl-table-body');
             if(!currentUser.pnl || currentUser.pnl.length === 0) {
@@ -821,10 +943,23 @@
                 return;
             }
             currentUser.balance -= currentBet;
+            currentUser.totalBets += currentBet;
+
             const winMultiplier = [0, 0, 0.5, 2, 5, 10][Math.floor(Math.random() * 6)];
             const winAmount = currentBet * winMultiplier;
             currentUser.balance += winAmount;
             
+            // Record individual bet
+            const nowStr = new Date().toLocaleTimeString();
+            if(!currentUser.betHistory) currentUser.betHistory = [];
+            currentUser.betHistory.push({
+                time: nowStr,
+                game: document.getElementById('simulation-game-name').innerText,
+                bet: currentBet,
+                win: winAmount
+            });
+
+            checkVipProgression();
             updateBalanceDisplay();
             
             const msg = document.getElementById('spin-result-msg');
