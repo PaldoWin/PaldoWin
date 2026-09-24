@@ -36,21 +36,20 @@
     <!-- Main Header -->
     <header class="bg-[#181b22] border-b border-[#2a2f3d] sticky top-0 z-40 px-4 py-3 shadow-md">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <!-- Logo -->
+            <!-- Logo & Brand -->
             <div class="flex items-center space-x-3">
+                <img src="logo.jpg" alt="PaldoWin Logo" class="w-8 h-8 rounded-full object-cover border-2 border-yellow-500">
                 <span class="text-2xl font-black tracking-wider text-transparent bg-clip-text gold-gradient">PALDOWIN</span>
                 <span id="header-vip-badge" class="hidden md:inline-block bg-gray-800 text-gray-300 text-xs px-2 py-0.5 rounded border border-gray-700">VIP 0</span>
             </div>
 
             <!-- User Auth / Wallet State -->
             <div id="auth-header-container" class="flex items-center space-x-3">
-                <!-- Logged Out View -->
                 <div id="logged-out-nav" class="flex items-center space-x-2">
                     <button onclick="openModal('loginModal')" class="bg-transparent border border-gray-600 hover:border-yellow-500 text-white px-4 py-1.5 rounded text-sm font-medium transition">Login</button>
                     <button onclick="openModal('registerModal')" class="gold-gradient text-black px-4 py-1.5 rounded text-sm font-bold shadow hover:opacity-90 transition">Register</button>
                 </div>
 
-                <!-- Logged In View -->
                 <div id="logged-in-nav" class="hidden flex items-center space-x-3">
                     <div class="bg-[#12141a] border border-[#2a2f3d] px-3 py-1 rounded flex items-center space-x-2">
                         <span class="text-xs text-gray-400">Balance:</span>
@@ -74,11 +73,9 @@
         <!-- Navigation Categories -->
         <nav class="max-w-7xl mx-auto mt-3 overflow-x-auto flex space-x-6 text-sm pb-1 scrollbar-none">
             <a href="#" class="text-yellow-400 font-bold flex flex-col items-center space-y-1 shrink-0"><i class="fa-solid fa-house text-lg"></i><span>HOME</span></a>
-            <a href="#slots" onclick="triggerNavAlert('Slots')" class="text-gray-400 hover:text-yellow-400 flex flex-col items-center space-y-1 shrink-0"><i class="fa-solid fa-gamepad text-lg"></i><span>SLOTS</span></a>
-            <a href="#fishing" onclick="triggerNavAlert('Fishing')" class="text-gray-400 hover:text-yellow-400 flex flex-col items-center space-y-1 shrink-0"><i class="fa-solid fa-fish text-lg"></i><span>FISHING</span></a>
-            <a href="#live" onclick="triggerNavAlert('Live Casino')" class="text-gray-400 hover:text-yellow-400 flex flex-col items-center space-y-1 shrink-0"><i class="fa-solid fa-video text-lg"></i><span>LIVE CASINO</span></a>
-            <a href="#arcade" onclick="triggerNavAlert('Arcade')" class="text-gray-400 hover:text-yellow-400 flex flex-col items-center space-y-1 shrink-0"><i class="fa-solid fa-dice text-lg"></i><span>ARCADE</span></a>
-            <a href="#sports" onclick="triggerNavAlert('Sports')" class="text-gray-400 hover:text-yellow-400 flex flex-col items-center space-y-1 shrink-0"><i class="fa-solid fa-futbol text-lg"></i><span>SPORTS</span></a>
+            <a href="#slots" class="text-gray-400 hover:text-yellow-400 flex flex-col items-center space-y-1 shrink-0"><i class="fa-solid fa-gamepad text-lg"></i><span>SLOTS</span></a>
+            <a href="#fishing" class="text-gray-400 hover:text-yellow-400 flex flex-col items-center space-y-1 shrink-0"><i class="fa-solid fa-fish text-lg"></i><span>FISHING</span></a>
+            <a href="#live" class="text-gray-400 hover:text-yellow-400 flex flex-col items-center space-y-1 shrink-0"><i class="fa-solid fa-video text-lg"></i><span>LIVE CASINO</span></a>
         </nav>
     </header>
 
@@ -88,31 +85,20 @@
             <div class="flex items-center justify-between mb-4">
                 <h2 class="text-lg font-bold text-white flex items-center space-x-2">
                     <i class="fa-solid fa-fire text-yellow-500"></i>
-                    <span>Hot Games</span>
+                    <span>Test VIP System (Play Games)</span>
                 </h2>
             </div>
-
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                <div onclick="playGame('Super Ace')" class="dark-card rounded-lg overflow-hidden group cursor-pointer hover:border-yellow-500 transition shadow">
-                    <div class="bg-gradient-to-br from-yellow-600 to-amber-800 h-32 flex items-center justify-center relative">
-                        <i class="fa-solid fa-crown text-4xl text-white/80 group-hover:scale-110 transition"></i>
-                        <span class="absolute top-2 left-2 bg-red-600 text-white text-[10px] px-1.5 py-0.5 rounded font-bold">HOT</span>
-                    </div>
-                    <div class="p-2 text-center">
-                        <div class="text-sm font-bold text-white truncate">Super Ace</div>
-                        <div class="text-[10px] text-yellow-500">JILI Games</div>
-                    </div>
+            <!-- Dummy Game Cards: Testing VIP Bets -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div onclick="playGame('Super Ace', 100)" class="dark-card rounded-lg overflow-hidden group cursor-pointer hover:border-yellow-500 transition shadow text-center p-4">
+                    <i class="fa-solid fa-crown text-3xl text-yellow-500 mb-2"></i>
+                    <div class="text-sm font-bold text-white">Super Ace</div>
+                    <div class="text-xs text-gray-400">Bet: ₱100</div>
                 </div>
-
-                <div onclick="playGame('Money Coming')" class="dark-card rounded-lg overflow-hidden group cursor-pointer hover:border-yellow-500 transition shadow">
-                    <div class="bg-gradient-to-br from-green-600 to-emerald-800 h-32 flex items-center justify-center relative">
-                        <i class="fa-solid fa-money-bill-wave text-4xl text-white/80 group-hover:scale-110 transition"></i>
-                        <span class="absolute top-2 left-2 bg-yellow-500 text-black text-[10px] px-1.5 py-0.5 rounded font-bold">25,000X</span>
-                    </div>
-                    <div class="p-2 text-center">
-                        <div class="text-sm font-bold text-white truncate">Money Coming</div>
-                        <div class="text-[10px] text-yellow-500">JILI Games</div>
-                    </div>
+                <div onclick="playGame('Money Coming', 5000)" class="dark-card rounded-lg overflow-hidden group cursor-pointer hover:border-yellow-500 transition shadow text-center p-4">
+                    <i class="fa-solid fa-money-bill-wave text-3xl text-green-500 mb-2"></i>
+                    <div class="text-sm font-bold text-white">Money Coming</div>
+                    <div class="text-xs text-gray-400">High Roller Bet: ₱5,000</div>
                 </div>
             </div>
         </div>
@@ -120,59 +106,48 @@
 
     <!-- ================= MODALS ================= -->
 
-    <!-- 1. REGISTER MODAL -->
+    <!-- REGISTER MODAL (Min 6 Chars) -->
     <div id="registerModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden">
         <div class="bg-[#181b22] border border-[#2a2f3d] w-full max-w-md rounded-xl p-6 relative shadow-2xl">
             <button onclick="closeModal('registerModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
             <h2 class="text-2xl font-bold text-white mb-6">Register</h2>
-            
             <form onsubmit="handleRegister(event)" class="space-y-4">
                 <div>
-                    <label class="block text-xs font-medium text-gray-300 mb-1">Username<span class="text-red-500">*</span></label>
-                    <input type="text" id="reg-username" required class="w-full px-4 py-2.5 rounded-lg custom-input text-sm">
+                    <label class="block text-xs font-medium text-gray-300 mb-1">Username (Min 6 letters)<span class="text-red-500">*</span></label>
+                    <input type="text" id="reg-username" minlength="6" required class="w-full px-4 py-2.5 rounded-lg custom-input text-sm">
                 </div>
                 <div>
-                    <label class="block text-xs font-medium text-gray-300 mb-1">Password<span class="text-red-500">*</span></label>
-                    <input type="password" id="reg-password" required class="w-full px-4 py-2.5 rounded-lg custom-input text-sm">
-                </div>
-                <div>
-                    <label class="block text-xs font-medium text-gray-300 mb-1">Mobile number<span class="text-red-500">*</span></label>
-                    <input type="text" id="reg-mobile" required class="w-full px-4 py-2.5 rounded-lg custom-input text-sm">
+                    <label class="block text-xs font-medium text-gray-300 mb-1">Password (Min 6 characters)<span class="text-red-500">*</span></label>
+                    <input type="password" id="reg-password" minlength="6" required class="w-full px-4 py-2.5 rounded-lg custom-input text-sm">
                 </div>
                 <button type="submit" class="w-full gold-gradient text-black font-bold py-2.5 rounded-lg text-sm shadow hover:opacity-90 transition">REGISTER</button>
             </form>
-            <div class="mt-4 text-center text-xs text-gray-400">
-                Already have an account? <button onclick="switchModal('registerModal', 'loginModal')" class="text-yellow-400 font-bold hover:underline">Login</button>
-            </div>
         </div>
     </div>
 
-    <!-- 2. LOGIN MODAL -->
+    <!-- LOGIN MODAL (Strict Validation) -->
     <div id="loginModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden">
         <div class="bg-[#181b22] border border-[#2a2f3d] w-full max-w-md rounded-xl p-6 relative shadow-2xl">
             <button onclick="closeModal('loginModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
             <h2 class="text-2xl font-bold text-white mb-6">Login</h2>
-            
             <form onsubmit="handleLogin(event)" class="space-y-4">
                 <div>
                     <label class="block text-xs font-medium text-gray-300 mb-1">Username<span class="text-red-500">*</span></label>
-                    <input type="text" id="login-username" required class="w-full px-4 py-2.5 rounded-lg custom-input text-sm">
+                    <input type="text" id="login-username" minlength="6" required class="w-full px-4 py-2.5 rounded-lg custom-input text-sm">
                 </div>
                 <div>
                     <label class="block text-xs font-medium text-gray-300 mb-1">Password<span class="text-red-500">*</span></label>
-                    <input type="password" id="login-password" required class="w-full px-4 py-2.5 rounded-lg custom-input text-sm">
+                    <input type="password" id="login-password" minlength="6" required class="w-full px-4 py-2.5 rounded-lg custom-input text-sm">
                 </div>
                 <button type="submit" class="w-full gold-gradient text-black font-bold py-2.5 rounded-lg text-sm shadow hover:opacity-90 transition mt-2">LOGIN</button>
             </form>
-            <div class="mt-4 text-center text-xs text-gray-400">
-                Don't have an account? <button onclick="switchModal('loginModal', 'registerModal')" class="text-yellow-400 font-bold hover:underline">Register</button>
-            </div>
         </div>
     </div>
 
-    <!-- 3. PERSONAL CENTER / CASHIER MODAL -->
+    <!-- PERSONAL CENTER / CASHIER MODAL -->
     <div id="personalCenterModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden">
         <div class="bg-[#181b22] border border-[#2a2f3d] w-full max-w-4xl h-[85vh] rounded-xl overflow-hidden flex relative shadow-2xl">
+            
             <!-- Sidebar -->
             <div class="w-64 bg-[#12141a] border-r border-[#2a2f3d] flex flex-col">
                 <div class="p-4 border-b border-[#2a2f3d]">
@@ -182,6 +157,7 @@
                 <div class="flex-grow overflow-y-auto space-y-1 p-2">
                     <button onclick="switchTab('deposit')" class="w-full text-left px-3 py-2.5 rounded text-xs font-medium text-gray-300 hover:bg-[#181b22] flex items-center space-x-2"><i class="fa-solid fa-wallet text-yellow-500 w-5"></i><span>Deposit</span></button>
                     <button onclick="switchTab('withdrawal')" class="w-full text-left px-3 py-2.5 rounded text-xs font-medium text-gray-300 hover:bg-[#181b22] flex items-center space-x-2"><i class="fa-solid fa-money-bill-transfer text-yellow-500 w-5"></i><span>Withdrawal</span></button>
+                    <button onclick="switchTab('rewards')" class="w-full text-left px-3 py-2.5 rounded text-xs font-medium text-gray-300 hover:bg-[#181b22] flex items-center space-x-2"><i class="fa-solid fa-gift text-yellow-500 w-5"></i><span>Claim Rewards</span></button>
                 </div>
             </div>
 
@@ -189,67 +165,93 @@
             <div class="flex-grow flex flex-col bg-[#181b22] relative overflow-y-auto">
                 <button onclick="closeModal('personalCenterModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg z-10"><i class="fa-solid fa-xmark"></i></button>
 
-                <!-- Deposit Tab Content -->
+                <!-- 1. DEPOSIT TAB -->
                 <div id="tab-content-deposit" class="p-6 space-y-5">
-                    <h3 class="text-sm font-bold text-gray-300 uppercase tracking-wide">Deposit Method</h3>
-                    
-                    <div class="grid grid-cols-2 gap-2">
-                        <div class="border border-yellow-500 bg-yellow-500/10 p-2.5 rounded-lg text-center cursor-pointer">
-                            <div class="font-bold text-xs text-white">GCash</div>
-                        </div>
-                    </div>
-
+                    <h3 class="text-sm font-bold text-gray-300 uppercase tracking-wide">Deposit Method (GCash)</h3>
                     <div>
                         <div class="text-xs font-bold text-gray-400 mb-2">Deposit Amount</div>
-                        <div class="mt-2">
-                            <input type="number" id="deposit-amount-input" value="500" class="w-full px-3 py-2 rounded custom-input text-sm font-bold" placeholder="Amount">
+                        <!-- Quick Select Grid -->
+                        <div class="grid grid-cols-5 gap-2 mb-3">
+                            <button onclick="document.getElementById('deposit-amount-input').value = 100" class="border border-gray-600 hover:border-yellow-500 rounded py-1.5 text-xs text-gray-300 hover:text-yellow-400 transition">100</button>
+                            <button onclick="document.getElementById('deposit-amount-input').value = 200" class="border border-gray-600 hover:border-yellow-500 rounded py-1.5 text-xs text-gray-300 hover:text-yellow-400 transition">200</button>
+                            <button onclick="document.getElementById('deposit-amount-input').value = 300" class="border border-gray-600 hover:border-yellow-500 rounded py-1.5 text-xs text-gray-300 hover:text-yellow-400 transition">300</button>
+                            <button onclick="document.getElementById('deposit-amount-input').value = 500" class="border border-gray-600 hover:border-yellow-500 rounded py-1.5 text-xs text-gray-300 hover:text-yellow-400 transition">500</button>
+                            <button onclick="document.getElementById('deposit-amount-input').value = 1000" class="border border-gray-600 hover:border-yellow-500 rounded py-1.5 text-xs text-gray-300 hover:text-yellow-400 transition">1,000</button>
+                            <button onclick="document.getElementById('deposit-amount-input').value = 2000" class="border border-gray-600 hover:border-yellow-500 rounded py-1.5 text-xs text-gray-300 hover:text-yellow-400 transition">2,000</button>
+                            <button onclick="document.getElementById('deposit-amount-input').value = 3000" class="border border-gray-600 hover:border-yellow-500 rounded py-1.5 text-xs text-gray-300 hover:text-yellow-400 transition">3,000</button>
+                            <button onclick="document.getElementById('deposit-amount-input').value = 5000" class="border border-gray-600 hover:border-yellow-500 rounded py-1.5 text-xs text-gray-300 hover:text-yellow-400 transition">5,000</button>
+                            <button onclick="document.getElementById('deposit-amount-input').value = 10000" class="border border-gray-600 hover:border-yellow-500 rounded py-1.5 text-xs text-gray-300 hover:text-yellow-400 transition">10,000</button>
+                            <button onclick="document.getElementById('deposit-amount-input').value = 20000" class="border border-gray-600 hover:border-yellow-500 rounded py-1.5 text-xs text-gray-300 hover:text-yellow-400 transition">20,000</button>
                         </div>
+                        <input type="number" id="deposit-amount-input" class="w-full px-3 py-2 rounded custom-input text-sm font-bold" placeholder="Or enter custom amount">
                     </div>
-
                     <button onclick="proceedDepositGateway()" class="w-full gold-gradient text-black font-bold py-3 rounded-lg text-sm shadow hover:opacity-90 transition">Next</button>
                 </div>
 
-                <!-- Withdrawal Tab Content -->
+                <!-- 2. WITHDRAWAL TAB -->
                 <div id="tab-content-withdrawal" class="p-6 space-y-5 hidden">
-                    <h3 class="text-sm font-bold text-gray-300 uppercase tracking-wide mb-4">Withdraw Funds</h3>
-                    <input type="number" id="withdraw-amount-input" placeholder="Enter amount" class="w-full px-3 py-2 rounded custom-input text-xs mb-4">
+                    <h3 class="text-sm font-bold text-gray-300 uppercase tracking-wide">Withdraw Funds</h3>
+                    <div>
+                        <div class="text-xs font-bold text-gray-400 mb-2">Withdraw Amount</div>
+                        <!-- Quick Select Grid -->
+                        <div class="grid grid-cols-5 gap-2 mb-3">
+                            <button onclick="document.getElementById('withdraw-amount-input').value = 100" class="border border-gray-600 hover:border-yellow-500 rounded py-1.5 text-xs text-gray-300 hover:text-yellow-400 transition">100</button>
+                            <button onclick="document.getElementById('withdraw-amount-input').value = 200" class="border border-gray-600 hover:border-yellow-500 rounded py-1.5 text-xs text-gray-300 hover:text-yellow-400 transition">200</button>
+                            <button onclick="document.getElementById('withdraw-amount-input').value = 300" class="border border-gray-600 hover:border-yellow-500 rounded py-1.5 text-xs text-gray-300 hover:text-yellow-400 transition">300</button>
+                            <button onclick="document.getElementById('withdraw-amount-input').value = 500" class="border border-gray-600 hover:border-yellow-500 rounded py-1.5 text-xs text-gray-300 hover:text-yellow-400 transition">500</button>
+                            <button onclick="document.getElementById('withdraw-amount-input').value = 1000" class="border border-gray-600 hover:border-yellow-500 rounded py-1.5 text-xs text-gray-300 hover:text-yellow-400 transition">1,000</button>
+                            <button onclick="document.getElementById('withdraw-amount-input').value = 2000" class="border border-gray-600 hover:border-yellow-500 rounded py-1.5 text-xs text-gray-300 hover:text-yellow-400 transition">2,000</button>
+                            <button onclick="document.getElementById('withdraw-amount-input').value = 3000" class="border border-gray-600 hover:border-yellow-500 rounded py-1.5 text-xs text-gray-300 hover:text-yellow-400 transition">3,000</button>
+                            <button onclick="document.getElementById('withdraw-amount-input').value = 5000" class="border border-gray-600 hover:border-yellow-500 rounded py-1.5 text-xs text-gray-300 hover:text-yellow-400 transition">5,000</button>
+                            <button onclick="document.getElementById('withdraw-amount-input').value = 10000" class="border border-gray-600 hover:border-yellow-500 rounded py-1.5 text-xs text-gray-300 hover:text-yellow-400 transition">10,000</button>
+                            <button onclick="document.getElementById('withdraw-amount-input').value = 20000" class="border border-gray-600 hover:border-yellow-500 rounded py-1.5 text-xs text-gray-300 hover:text-yellow-400 transition">20,000</button>
+                        </div>
+                        <input type="number" id="withdraw-amount-input" class="w-full px-3 py-2 rounded custom-input text-sm" placeholder="Enter amount">
+                    </div>
                     <button onclick="submitWithdrawal()" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-lg text-sm transition">Submit Withdrawal</button>
                 </div>
+
+                <!-- 3. REWARDS TAB (VIP) -->
+                <div id="tab-content-rewards" class="p-6 space-y-4 hidden">
+                    <h3 class="text-sm font-bold text-gray-300 uppercase tracking-wide">VIP Progress & Rewards</h3>
+                    
+                    <div class="bg-[#12141a] p-4 rounded-lg border border-[#2a2f3d]">
+                        <div class="flex justify-between text-xs mb-1">
+                            <span class="text-gray-400">Total Valid Bets:</span>
+                            <span id="rewards-total-bets" class="text-yellow-400 font-bold">₱0</span>
+                        </div>
+                        <div class="flex justify-between text-xs mb-4">
+                            <span class="text-gray-400">Current Level:</span>
+                            <span id="rewards-current-vip" class="text-white font-bold">VIP 0</span>
+                        </div>
+                        <!-- VIP List gets populated by JavaScript -->
+                        <div id="vip-rewards-list" class="space-y-2 max-h-72 overflow-y-auto pr-1"></div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
 
-    <!-- 4. UPDATED PAYMENT MODAL -->
+    <!-- PAYMENT MODAL -->
     <div id="paymentModal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center hidden">
         <div class="bg-[#111827] border border-[#1f2937] w-full max-w-sm rounded-[20px] p-6 relative shadow-2xl flex flex-col items-center">
-            
-            <button onclick="closeModal('paymentModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-
+            <button onclick="closeModal('paymentModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
             <h3 class="text-[#3b82f6] font-bold text-sm mb-5 mt-2">Scan QR Code or Copy Phone Number</h3>
 
-            <!-- White Container: Holds both QR Code AND Phone Number -->
             <div class="bg-white p-4 rounded-xl w-full flex flex-col items-center justify-center mb-6 shadow-inner">
-                <!-- EXACT MATCHING FILENAME HERE -->
+                <!-- GCash Image -->
                 <img src="gcash.png" alt="QR Code" class="w-48 h-48 object-contain">
                 
-                <!-- Phone Number beneath the QR code -->
                 <div class="mt-4 flex items-center space-x-2 bg-gray-100 px-4 py-2 rounded-lg w-full justify-center">
                     <span class="text-gray-900 font-bold text-lg">09920232506</span>
-                    <button onclick="copyPhoneNumber()" class="text-blue-600 hover:text-blue-800 transition px-2" title="Copy Number">
-                        <i class="fa-regular fa-copy text-xl"></i>
-                    </button>
+                    <button onclick="navigator.clipboard.writeText('09920232506'); alert('Copied!');" class="text-blue-600 px-2"><i class="fa-regular fa-copy text-xl"></i></button>
                 </div>
             </div>
 
-            <!-- Details Box -->
-            <div class="w-full border border-[#1f2937] rounded-xl p-4 mb-6 bg-[#0f1117]">
-                <!-- Amount Row -->
-                <div class="flex justify-between items-center">
-                    <span class="text-gray-400 text-sm">Amount to Pay:</span>
-                    <span id="payment-amount-display" class="text-[#ef4444] font-bold text-base">₱500.00</span>
-                </div>
+            <div class="w-full border border-[#1f2937] rounded-xl p-4 mb-6 bg-[#0f1117] flex justify-between items-center">
+                <span class="text-gray-400 text-sm">Amount to Pay:</span>
+                <span id="payment-amount-display" class="text-[#ef4444] font-bold text-base">₱0.00</span>
             </div>
 
             <button onclick="completePayment()" class="w-full bg-[#2563eb] hover:bg-blue-600 text-white font-bold py-3.5 rounded-xl shadow-lg transition text-sm">
@@ -258,71 +260,158 @@
         </div>
     </div>
 
-    <!-- Application Script Logic -->
+    <!-- Script Logic -->
     <script>
-        let currentUser = null;
-        let userBalance = 0.00;
+        // Database Simulation
+        let usersDB = {}; 
+        let activeUser = null;
         let pendingDepositAmount = 0;
 
-        function openModal(modalId) { document.getElementById(modalId).classList.remove('hidden'); }
-        function closeModal(modalId) { document.getElementById(modalId).classList.add('hidden'); }
-        function switchModal(closeId, openId) { closeModal(closeId); openModal(openId); }
+        // VIP Tiers Setup
+        const vipTiers = [
+            { level: 1, bets: 20000, bonus: 50 },
+            { level: 2, bets: 50000, bonus: 150 },
+            { level: 3, bets: 100000, bonus: 388 },
+            { level: 4, bets: 250000, bonus: 888 },
+            { level: 5, bets: 500000, bonus: 2000 },
+            { level: 6, bets: 1000000, bonus: 5000 },
+            { level: 7, bets: 2500000, bonus: 15000 },
+            { level: 8, bets: 5000000, bonus: 38888 },
+            { level: 9, bets: 10000000, bonus: 88888 },
+            { level: 10, bets: 25000000, bonus: 188888 }
+        ];
 
+        function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+        function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+
+        // --- AUTH SYSTEM (Strict) ---
         function handleRegister(e) {
             e.preventDefault();
-            const username = document.getElementById('reg-username').value;
-            currentUser = { username: username };
-            userBalance = 100.00; 
+            const u = document.getElementById('reg-username').value;
+            const p = document.getElementById('reg-password').value;
+            
+            if(usersDB[u]) return alert("Username already exists!");
+            
+            // Save user securely
+            usersDB[u] = { password: p, balance: 1000, totalBets: 0, currentVIP: 0, claimedVIPs: [] };
+            activeUser = u;
             updateAuthUI();
             closeModal('registerModal');
-            alert('Registration successful! Welcome bonus of ₱100 added.');
+            alert('Registered successfully! ₱1,000 Test Bonus added.');
         }
 
         function handleLogin(e) {
             e.preventDefault();
-            const username = document.getElementById('login-username').value;
-            currentUser = { username: username };
-            userBalance = 500.00;
+            const u = document.getElementById('login-username').value;
+            const p = document.getElementById('login-password').value;
+            
+            // Check credentials
+            if(!usersDB[u] || usersDB[u].password !== p) {
+                return alert("Incorrect username or password. Please try again.");
+            }
+            
+            activeUser = u;
             updateAuthUI();
             closeModal('loginModal');
         }
 
-        function logout() {
-            currentUser = null;
-            userBalance = 0.00;
-            updateAuthUI();
-        }
+        function logout() { activeUser = null; updateAuthUI(); }
 
         function updateAuthUI() {
-            const loggedOutNav = document.getElementById('logged-out-nav');
-            const loggedInNav = document.getElementById('logged-in-nav');
-            const balanceDisp = document.getElementById('user-balance-display');
-
-            if (currentUser) {
-                loggedOutNav.classList.add('hidden');
-                loggedInNav.classList.remove('hidden');
-                balanceDisp.textContent = '₱' + userBalance.toFixed(2);
-                document.getElementById('pc-username').textContent = currentUser.username;
+            if (activeUser) {
+                document.getElementById('logged-out-nav').classList.add('hidden');
+                document.getElementById('logged-in-nav').classList.remove('hidden');
+                document.getElementById('user-balance-display').textContent = '₱' + usersDB[activeUser].balance.toLocaleString();
+                document.getElementById('pc-username').textContent = activeUser;
+                calculateVIP();
             } else {
-                loggedOutNav.classList.remove('hidden');
-                loggedInNav.classList.add('hidden');
+                document.getElementById('logged-out-nav').classList.remove('hidden');
+                document.getElementById('logged-in-nav').classList.add('hidden');
+                document.getElementById('header-vip-badge').classList.add('hidden');
             }
         }
 
-        function refreshBalance() { alert('Balance synchronized: ₱' + userBalance.toFixed(2)); }
-
-        function playGame(gameName) {
-            if (!currentUser) return openModal('loginModal');
-            if (userBalance < 10) return alert('Low balance!');
-            userBalance -= 10;
-            const winAmount = Math.random() > 0.5 ? 25 : 0;
-            userBalance += winAmount;
+        // --- VIP & BETTING SYSTEM ---
+        function playGame(gameName, betAmount) {
+            if (!activeUser) return openModal('loginModal');
+            const user = usersDB[activeUser];
+            
+            if (user.balance < betAmount) return alert('Insufficient balance for this bet!');
+            
+            // Deduct bet, track it, randomly win sometimes
+            user.balance -= betAmount;
+            user.totalBets += betAmount;
+            
+            const won = Math.random() > 0.6;
+            if(won) user.balance += (betAmount * 1.5);
+            
+            calculateVIP();
             updateAuthUI();
-            alert('Played ' + gameName + '! ' + (winAmount ? 'Won ₱25!' : 'Lost.'));
+            
+            alert(`Played ${gameName} for ₱${betAmount}. ${won ? 'You WON!' : 'You lost.'}`);
         }
 
+        function calculateVIP() {
+            if(!activeUser) return;
+            const user = usersDB[activeUser];
+            let newVip = 0;
+            
+            // Find highest eligible tier
+            vipTiers.forEach(tier => { if(user.totalBets >= tier.bets) newVip = tier.level; });
+            user.currentVIP = newVip;
+
+            // Update UI badge
+            const badge = document.getElementById('header-vip-badge');
+            badge.textContent = `VIP ${newVip}`;
+            badge.classList.remove('hidden');
+        }
+
+        function renderRewardsList() {
+            if(!activeUser) return;
+            const user = usersDB[activeUser];
+            document.getElementById('rewards-total-bets').textContent = '₱' + user.totalBets.toLocaleString();
+            document.getElementById('rewards-current-vip').textContent = `VIP ${user.currentVIP}`;
+            
+            const listDiv = document.getElementById('vip-rewards-list');
+            listDiv.innerHTML = '';
+            
+            vipTiers.forEach(tier => {
+                const isClaimed = user.claimedVIPs.includes(tier.level);
+                const isEligible = user.totalBets >= tier.bets;
+                let btn = '';
+                
+                if (isClaimed) {
+                    btn = `<button disabled class="bg-gray-700 text-gray-500 text-xs px-3 py-1 rounded cursor-not-allowed">Claimed</button>`;
+                } else if (isEligible) {
+                    btn = `<button onclick="claimBonus(${tier.level}, ${tier.bonus})" class="bg-yellow-500 hover:bg-yellow-400 text-black font-bold text-xs px-3 py-1 rounded shadow">Claim ₱${tier.bonus}</button>`;
+                } else {
+                    btn = `<button disabled class="bg-[#2a2f3d] text-gray-500 text-xs px-3 py-1 rounded cursor-not-allowed">Locked</button>`;
+                }
+
+                listDiv.innerHTML += `
+                    <div class="flex justify-between items-center bg-[#181b22] p-2 rounded border border-[#2a2f3d]">
+                        <div>
+                            <div class="text-sm font-bold text-white">VIP ${tier.level}</div>
+                            <div class="text-[10px] text-gray-400">Req: ₱${tier.bets.toLocaleString()} Bets</div>
+                        </div>
+                        ${btn}
+                    </div>
+                `;
+            });
+        }
+
+        function claimBonus(level, amount) {
+            const user = usersDB[activeUser];
+            user.balance += amount;
+            user.claimedVIPs.push(level);
+            updateAuthUI();
+            renderRewardsList();
+            alert(`Success! ₱${amount.toLocaleString()} VIP ${level} bonus added to your balance.`);
+        }
+
+        // --- CASHIER SYSTEM ---
         function openPersonalCenter(tabName) {
-            if (!currentUser) return openModal('loginModal');
+            if (!activeUser) return openModal('loginModal');
             openModal('personalCenterModal');
             switchTab(tabName);
         }
@@ -330,40 +419,38 @@
         function switchTab(tabName) {
             document.getElementById('tab-content-deposit').classList.add('hidden');
             document.getElementById('tab-content-withdrawal').classList.add('hidden');
+            document.getElementById('tab-content-rewards').classList.add('hidden');
             document.getElementById('tab-content-' + tabName).classList.remove('hidden');
+            
+            if(tabName === 'rewards') renderRewardsList();
         }
 
         function proceedDepositGateway() {
-            const amount = parseFloat(document.getElementById('deposit-amount-input').value) || 500;
+            const amount = parseFloat(document.getElementById('deposit-amount-input').value);
+            if(!amount || amount < 100) return alert('Please select or enter an amount (Min 100).');
+            
             pendingDepositAmount = amount;
-            
-            const formattedAmount = amount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-            document.getElementById('payment-amount-display').textContent = '₱' + formattedAmount;
-            
+            document.getElementById('payment-amount-display').textContent = '₱' + amount.toLocaleString();
             closeModal('personalCenterModal');
             openModal('paymentModal');
         }
 
-        function copyPhoneNumber() {
-            navigator.clipboard.writeText("09920232506").then(() => {
-                alert("Phone number copied to clipboard!");
-            });
-        }
-
         function completePayment() {
-            userBalance += pendingDepositAmount;
+            usersDB[activeUser].balance += pendingDepositAmount;
             updateAuthUI();
             closeModal('paymentModal');
-            alert('Payment submitted! ₱' + pendingDepositAmount.toFixed(2) + ' has been credited to your account.');
+            alert('Deposit of ₱' + pendingDepositAmount.toLocaleString() + ' successful!');
         }
 
         function submitWithdrawal() {
             const amt = parseFloat(document.getElementById('withdraw-amount-input').value);
-            if (!amt || amt > userBalance) return alert('Invalid amount or insufficient balance.');
-            userBalance -= amt;
+            const user = usersDB[activeUser];
+            if (!amt || amt > user.balance) return alert('Invalid amount or insufficient balance.');
+            
+            user.balance -= amt;
             updateAuthUI();
-            alert('Withdrawal of ₱' + amt + ' submitted.');
             closeModal('personalCenterModal');
+            alert('Withdrawal of ₱' + amt.toLocaleString() + ' submitted for processing.');
         }
     </script>
 </body>
