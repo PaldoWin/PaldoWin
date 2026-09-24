@@ -32,7 +32,7 @@
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <!-- Logo -->
             <div class="flex items-center space-x-3">
-                <span class="text-2xl font-ext500 tracking-wider text-transparent bg-clip-text gold-gradient font-black">PALDOWIN</span>
+                <span class="text-2xl font-black tracking-wider text-transparent bg-clip-text gold-gradient">PALDOWIN</span>
                 <span class="hidden md:inline-block bg-yellow-500/10 text-yellow-500 text-xs px-2 py-0.5 rounded border border-yellow-500/30">VIP6</span>
             </div>
 
@@ -44,11 +44,11 @@
                     <button onclick="openModal('registerModal')" class="gold-gradient text-black px-4 py-1.5 rounded text-sm font-bold shadow hover:opacity-90 transition">Register</button>
                 </div>
 
-                <!-- Logged In View (Hidden by default) -->
+                <!-- Logged In View -->
                 <div id="logged-in-nav" class="hidden flex items-center space-x-3">
                     <div class="bg-[#12141a] border border-[#2a2f3d] px-3 py-1 rounded flex items-center space-x-2">
                         <span class="text-xs text-gray-400">Balance:</span>
-                        <span id="user-balance-display" class="text-yellow-400 font-bold">₱0.00</span>
+                        <span id="user-balance-display" class="text-yellow-400 font-bold">₱0.40</span>
                         <button onclick="refreshBalance()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-rotate-right text-xs"></i></button>
                     </div>
                     <button onclick="openPersonalCenter('deposit')" class="gold-gradient text-black px-3 py-1 rounded text-xs font-bold flex items-center space-x-1">
@@ -80,8 +80,6 @@
 
     <!-- Main Content Area -->
     <main class="max-w-7xl mx-auto px-4 py-6 flex-grow w-full space-y-6">
-        
-        <!-- Hot Games Grid -->
         <div>
             <div class="flex items-center justify-between mb-4">
                 <h2 class="text-lg font-bold text-white flex items-center space-x-2">
@@ -92,7 +90,6 @@
             </div>
 
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                <!-- Super Ace -->
                 <div onclick="playGame('Super Ace')" class="dark-card rounded-lg overflow-hidden group cursor-pointer hover:border-yellow-500 transition shadow">
                     <div class="bg-gradient-to-br from-yellow-600 to-amber-800 h-32 flex items-center justify-center relative">
                         <i class="fa-solid fa-crown text-4xl text-white/80 group-hover:scale-110 transition"></i>
@@ -104,7 +101,6 @@
                     </div>
                 </div>
 
-                <!-- Money Coming -->
                 <div onclick="playGame('Money Coming')" class="dark-card rounded-lg overflow-hidden group cursor-pointer hover:border-yellow-500 transition shadow">
                     <div class="bg-gradient-to-br from-green-600 to-emerald-800 h-32 flex items-center justify-center relative">
                         <i class="fa-solid fa-money-bill-wave text-4xl text-white/80 group-hover:scale-110 transition"></i>
@@ -116,7 +112,6 @@
                     </div>
                 </div>
 
-                <!-- Golden Empire -->
                 <div onclick="playGame('Golden Empire')" class="dark-card rounded-lg overflow-hidden group cursor-pointer hover:border-yellow-500 transition shadow">
                     <div class="bg-gradient-to-br from-yellow-700 to-yellow-900 h-32 flex items-center justify-center relative">
                         <i class="fa-solid fa-landmark text-4xl text-white/80 group-hover:scale-110 transition"></i>
@@ -127,7 +122,6 @@
                     </div>
                 </div>
 
-                <!-- Gates of Olympus -->
                 <div onclick="playGame('Gates of Olympus')" class="dark-card rounded-lg overflow-hidden group cursor-pointer hover:border-yellow-500 transition shadow">
                     <div class="bg-gradient-to-br from-blue-600 to-indigo-900 h-32 flex items-center justify-center relative">
                         <i class="fa-solid fa-bolt text-4xl text-white/80 group-hover:scale-110 transition"></i>
@@ -138,7 +132,6 @@
                     </div>
                 </div>
 
-                <!-- Crazy 777 -->
                 <div onclick="playGame('Crazy 777')" class="dark-card rounded-lg overflow-hidden group cursor-pointer hover:border-yellow-500 transition shadow">
                     <div class="bg-gradient-to-br from-red-600 to-rose-900 h-32 flex items-center justify-center relative">
                         <i class="fa-solid fa-7 text-4xl text-white/80 group-hover:scale-110 transition"></i>
@@ -149,7 +142,6 @@
                     </div>
                 </div>
 
-                <!-- Lucky Neko -->
                 <div onclick="playGame('Lucky Neko')" class="dark-card rounded-lg overflow-hidden group cursor-pointer hover:border-yellow-500 transition shadow">
                     <div class="bg-gradient-to-br from-purple-600 to-pink-900 h-32 flex items-center justify-center relative">
                         <i class="fa-solid fa-cat text-4xl text-white/80 group-hover:scale-110 transition"></i>
@@ -161,7 +153,6 @@
                 </div>
             </div>
         </div>
-
     </main>
 
     <!-- FOOTER -->
@@ -171,7 +162,7 @@
 
     <!-- ================= MODALS ================= -->
 
-    <!-- 1. REGISTER MODAL (Matching Reference Image) -->
+    <!-- 1. REGISTER MODAL -->
     <div id="registerModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden">
         <div class="bg-[#181b22] border border-[#2a2f3d] w-full max-w-md rounded-xl p-6 relative shadow-2xl">
             <button onclick="closeModal('registerModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
@@ -184,7 +175,12 @@
                 </div>
                 <div>
                     <label class="block text-xs font-medium text-gray-300 mb-1">Password<span class="text-red-500">*</span></label>
-                    <input type="password" id="reg-password" required placeholder="Password" class="w-full px-4 py-2.5 rounded-lg custom-input text-sm">
+                    <div class="relative">
+                        <input type="password" id="reg-password" required placeholder="Password" class="w-full px-4 py-2.5 rounded-lg custom-input text-sm pr-10">
+                        <button type="button" onclick="togglePasswordVisibility('reg-password', 'reg-eye-icon')" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white">
+                            <i id="reg-eye-icon" class="fa-solid fa-eye-slash text-sm"></i>
+                        </button>
+                    </div>
                 </div>
                 <div>
                     <label class="block text-xs font-medium text-gray-300 mb-1">Mobile number<span class="text-red-500">*</span></label>
@@ -216,7 +212,12 @@
                 </div>
                 <div>
                     <label class="block text-xs font-medium text-gray-300 mb-1">Password<span class="text-red-500">*</span></label>
-                    <input type="password" id="login-password" required placeholder="Password" class="w-full px-4 py-2.5 rounded-lg custom-input text-sm">
+                    <div class="relative">
+                        <input type="password" id="login-password" required placeholder="Password" class="w-full px-4 py-2.5 rounded-lg custom-input text-sm pr-10">
+                        <button type="button" onclick="togglePasswordVisibility('login-password', 'login-eye-icon')" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white">
+                            <i id="login-eye-icon" class="fa-solid fa-eye-slash text-sm"></i>
+                        </button>
+                    </div>
                 </div>
 
                 <button type="submit" class="w-full gold-gradient text-black font-bold py-2.5 rounded-lg text-sm shadow hover:opacity-90 transition mt-2">LOGIN</button>
@@ -250,52 +251,140 @@
                 <button onclick="closeModal('personalCenterModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg z-10"><i class="fa-solid fa-xmark"></i></button>
 
                 <!-- Deposit Tab Content -->
-                <div id="tab-content-deposit" class="p-6 space-y-6">
-                    <h3 class="text-lg font-bold text-white border-b border-[#2a2f3d] pb-3">Deposit Info</h3>
+                <div id="tab-content-deposit" class="p-6 space-y-5">
+                    <h3 class="text-sm font-bold text-gray-300 uppercase tracking-wide">Deposit Method</h3>
                     
-                    <div class="grid grid-cols-3 gap-3">
-                        <div class="border border-yellow-500 bg-yellow-500/10 p-3 rounded-lg text-center cursor-pointer">
-                            <div class="font-bold text-white text-sm">GCash</div>
-                            <div class="text-[10px] text-yellow-400">Instant Credit</div>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                        <div onclick="selectDepositMethod('GCash')" id="method-gcash" class="border border-gray-700 bg-[#12141a] p-2.5 rounded-lg text-center cursor-pointer hover:border-yellow-500 transition">
+                            <div class="font-bold text-xs text-white">GCash</div>
+                        </div>
+                        <div onclick="selectDepositMethod('Maya')" id="method-maya" class="border border-gray-700 bg-[#12141a] p-2.5 rounded-lg text-center cursor-pointer hover:border-yellow-500 transition">
+                            <div class="font-bold text-xs text-white">Maya <span class="text-[9px] text-yellow-400">+2%</span></div>
+                        </div>
+                        <div onclick="selectDepositMethod('GCashQR')" id="method-gcashqr" class="border border-yellow-500 bg-yellow-500/10 p-2.5 rounded-lg text-center cursor-pointer relative transition">
+                            <span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-red-500"></span>
+                            <div class="font-bold text-xs text-white">GCashQR</div>
+                        </div>
+                        <div onclick="selectDepositMethod('Online Banking')" id="method-banking" class="border border-gray-700 bg-[#12141a] p-2.5 rounded-lg text-center cursor-pointer hover:border-yellow-500 transition">
+                            <div class="font-bold text-xs text-white">Online Banking</div>
                         </div>
                     </div>
 
-                    <div class="bg-[#12141a] p-4 rounded-xl border border-[#2a2f3d] space-y-4">
-                        <div class="text-xs font-bold text-gray-400">Scan QR Code to Deposit (GCash Test Number: <span class="text-yellow-400">09920232506</span>)</div>
-                        <div class="flex flex-col md:flex-row items-center gap-4">
-                            <div class="bg-white p-2 rounded shadow w-40 h-40 flex items-center justify-center">
-                                <!-- User Provided GCash QR Image -->
-                                <img src="image_8ea1de.jpg" onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=09920232506'" alt="GCash QR" class="w-full h-full object-contain">
-                            </div>
-                            <div class="text-xs text-gray-300 space-y-2">
-                                <p><strong class="text-white">Account Name:</strong> SA**H M** C.</p>
-                                <p><strong class="text-white">GCash Number:</strong> 09920232506</p>
-                                <p class="text-gray-400">Transfer funds to the account above, enter the amount, and click submit below to test.</p>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-medium text-gray-300 mb-1">Deposit Amount (PHP)</label>
-                            <input type="number" id="deposit-amount-input" value="500" class="w-full px-4 py-2 rounded custom-input text-sm">
-                        </div>
-
-                        <button onclick="submitDeposit()" class="w-full gold-gradient text-black font-bold py-2.5 rounded text-sm shadow hover:opacity-90 transition">Apply for Deposit</button>
+                    <div id="deposit-notice-box" class="bg-[#12141a] border border-[#2a2f3d] p-3 rounded-lg text-[11px] text-gray-400 leading-relaxed">
+                        Dear customer, when using the GCash scan QR code channel, please make sure that the phone number and payment number are consistent. If they are not consistent, please fill in the last 6 digits of the transaction number on the webpage after completing the payment.
                     </div>
+
+                    <div>
+                        <div class="text-xs font-bold text-gray-400 mb-2">Payment Channel</div>
+                        <div class="flex flex-wrap gap-2">
+                            <button class="px-3 py-1.5 rounded bg-red-600/20 border border-red-500 text-red-400 text-xs font-bold">G-Cash QR.19</button>
+                            <button class="px-3 py-1.5 rounded bg-[#12141a] border border-[#2a2f3d] text-gray-300 text-xs">G-Cash QR.9</button>
+                            <button class="px-3 py-1.5 rounded bg-[#12141a] border border-[#2a2f3d] text-gray-300 text-xs">G-Cash QR.14</button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="text-xs font-bold text-gray-400 mb-2">Deposit Amounts</div>
+                        <div class="grid grid-cols-4 gap-2">
+                            <button onclick="setDepositAmount(100)" class="bg-[#12141a] border border-[#2a2f3d] hover:border-yellow-500 py-2 rounded text-xs text-white font-bold">100</button>
+                            <button onclick="setDepositAmount(300)" class="bg-[#12141a] border border-[#2a2f3d] hover:border-yellow-500 py-2 rounded text-xs text-white font-bold">300</button>
+                            <button onclick="setDepositAmount(500)" id="amt-btn-500" class="bg-red-600 border border-red-500 py-2 rounded text-xs text-white font-bold">500</button>
+                            <button onclick="setDepositAmount(800)" class="bg-[#12141a] border border-[#2a2f3d] hover:border-yellow-500 py-2 rounded text-xs text-white font-bold">800</button>
+                            <button onclick="setDepositAmount(1000)" class="bg-[#12141a] border border-[#2a2f3d] hover:border-yellow-500 py-2 rounded text-xs text-white font-bold">1,000</button>
+                            <button onclick="setDepositAmount(3000)" class="bg-[#12141a] border border-[#2a2f3d] hover:border-yellow-500 py-2 rounded text-xs text-white font-bold">3,000</button>
+                            <button onclick="setDepositAmount(5000)" class="bg-[#12141a] border border-[#2a2f3d] hover:border-yellow-500 py-2 rounded text-xs text-white font-bold">5,000</button>
+                            <button onclick="setDepositAmount(10000)" class="bg-[#12141a] border border-[#2a2f3d] hover:border-yellow-500 py-2 rounded text-xs text-white font-bold">10,000</button>
+                        </div>
+                        <div class="mt-2">
+                            <input type="number" id="deposit-amount-input" value="500" class="w-full px-3 py-2 rounded custom-input text-xs" placeholder="₱ 100 - 50,000">
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="text-xs font-bold text-gray-400 mb-2">Promotions</div>
+                        <div class="space-y-2 text-xs">
+                            <label class="flex items-center space-x-2 bg-[#12141a] p-2.5 rounded border border-[#2a2f3d] cursor-pointer">
+                                <input type="radio" name="promo" checked class="text-yellow-500">
+                                <span>Do not participate in any promotions</span>
+                            </label>
+                            <label class="flex items-center space-x-2 bg-[#12141a] p-2.5 rounded border border-[#2a2f3d] cursor-pointer">
+                                <input type="radio" name="promo" class="text-yellow-500">
+                                <span>DAILY FIRST CASH-IN BONUS (1/1) <span class="text-yellow-400 font-bold ml-auto">≥ ₱ 200.00</span></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button onclick="proceedDepositGateway()" class="w-full gold-gradient text-black font-ext500 py-3 rounded-lg text-sm shadow hover:opacity-90 transition">Next</button>
                 </div>
 
-                <!-- Withdrawal Tab Content -->
-                <div id="tab-content-withdrawal" class="p-6 space-y-6 hidden">
-                    <h3 class="text-lg font-bold text-white border-b border-[#2a2f3d] pb-3">Withdrawal</h3>
-                    <div class="bg-[#12141a] p-4 rounded-xl border border-[#2a2f3d] space-y-4">
-                        <div class="flex justify-between text-sm">
-                            <span class="text-gray-400">Available Amount:</span>
-                            <span id="withdraw-available-bal" class="text-yellow-400 font-bold">₱0.00</span>
+                <!-- Withdrawal Tab Content (Dynamic Add E-Wallet) -->
+                <div id="tab-content-withdrawal" class="p-6 space-y-5 hidden">
+                    <div class="flex items-center space-x-4 border-b border-[#2a2f3d] pb-3">
+                        <button onclick="selectWithdrawWallet('GCash')" id="w-tab-gcash" class="px-4 py-2 rounded-lg border-2 border-blue-500 bg-blue-500/10 text-white font-bold text-xs flex items-center space-x-2">
+                            <i class="fa-solid fa-wallet text-blue-400"></i> <span>GCash</span>
+                        </button>
+                        <button onclick="selectWithdrawWallet('Maya')" id="w-tab-maya" class="px-4 py-2 rounded-lg border border-[#2a2f3d] bg-[#12141a] text-gray-400 font-bold text-xs flex items-center space-x-2">
+                            <i class="fa-solid fa-wallet text-green-400"></i> <span>Maya</span>
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <!-- Dynamic Bound Card Container / Add Button -->
+                        <div class="md:col-span-2">
+                            <div id="bound-card-container">
+                                <!-- Populated dynamically: Shows either the saved e-wallet card OR the + Add Account button -->
+                            </div>
+                        </div>
+
+                        <!-- Withdrawal Time Notice Box -->
+                        <div class="bg-[#12141a] p-4 rounded-2xl border border-[#2a2f3d] text-xs space-y-2">
+                            <div class="text-amber-500 font-bold flex items-center space-x-1">
+                                <i class="fa-solid fa-clock"></i>
+                                <span>Withdrawal Time:</span>
+                            </div>
+                            <div class="text-red-400 font-bold">24 hours</div>
+                            <p class="text-gray-400 text-[11px] leading-relaxed">
+                                Note: Please make sure that your E-Wallet has been verified for withdrawal application. If the verification is not completed, it will not be credited to the account.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Wallet balances -->
+                    <div class="grid grid-cols-2 gap-4 bg-[#12141a] p-3 rounded-lg border border-[#2a2f3d] text-xs">
+                        <div>
+                            <span class="text-gray-400">Central Wallet:</span>
+                            <span id="withdraw-central-bal" class="text-white font-bold ml-2">₱0.40</span>
                         </div>
                         <div>
-                            <label class="block text-xs font-medium text-gray-300 mb-1">Withdraw Amount</label>
-                            <input type="number" id="withdraw-amount-input" placeholder="Enter amount" class="w-full px-4 py-2 rounded custom-input text-sm">
+                            <span class="text-gray-400">Available Amount:</span>
+                            <span id="withdraw-available-bal" class="text-yellow-400 font-bold ml-2">₱0.40</span>
                         </div>
-                        <button onclick="submitWithdrawal()" class="w-full bg-red-600 hover:bg-red-500 text-white font-bold py-2.5 rounded text-sm shadow transition">Submit Withdrawal</button>
+                    </div>
+
+                    <!-- Preset Amount Buttons Grid -->
+                    <div>
+                        <div class="text-xs font-bold text-gray-400 mb-2">Withdrawal Amount</div>
+                        <div class="grid grid-cols-3 sm:grid-cols-3 gap-2">
+                            <button onclick="setWithdrawAmount(100)" class="bg-[#12141a] border border-[#2a2f3d] hover:border-yellow-500 py-2 rounded text-xs text-white font-bold">100</button>
+                            <button onclick="setWithdrawAmount(300)" class="bg-[#12141a] border border-[#2a2f3d] hover:border-yellow-500 py-2 rounded text-xs text-white font-bold">300</button>
+                            <button onclick="setWithdrawAmount(500)" class="bg-[#12141a] border border-[#2a2f3d] hover:border-yellow-500 py-2 rounded text-xs text-white font-bold">500</button>
+                            <button onclick="setWithdrawAmount(800)" class="bg-[#12141a] border border-[#2a2f3d] hover:border-yellow-500 py-2 rounded text-xs text-white font-bold">800</button>
+                            <button onclick="setWithdrawAmount(1000)" class="bg-[#12141a] border border-[#2a2f3d] hover:border-yellow-500 py-2 rounded text-xs text-white font-bold">1,000</button>
+                            <button onclick="setWithdrawAmount(2000)" class="bg-[#12141a] border border-[#2a2f3d] hover:border-yellow-500 py-2 rounded text-xs text-white font-bold">2,000</button>
+                            <button onclick="setWithdrawAmount(5000)" class="bg-[#12141a] border border-[#2a2f3d] hover:border-yellow-500 py-2 rounded text-xs text-white font-bold">5,000</button>
+                            <button onclick="setWithdrawAmount(10000)" class="bg-[#12141a] border border-[#2a2f3d] hover:border-yellow-500 py-2 rounded text-xs text-white font-bold">10,000</button>
+                            <button onclick="setWithdrawAmount(15000)" class="bg-[#12141a] border border-[#2a2f3d] hover:border-yellow-500 py-2 rounded text-xs text-white font-bold">15,000</button>
+                        </div>
+                        <div class="mt-2">
+                            <input type="number" id="withdraw-amount-input" placeholder="Enter custom amount" class="w-full px-3 py-2 rounded custom-input text-xs">
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-2">
+                        <button onclick="submitWithdrawal()" class="w-full bg-gradient-to-r from-red-600 to-rose-700 hover:opacity-90 text-white font-bold py-3 rounded-lg text-sm shadow transition">Submit</button>
+                    </div>
+                    <div class="text-center text-xs text-gray-400">
+                        Remaining Number of Withdrawal Today: <span class="text-red-500 font-bold">20</span>
                     </div>
                 </div>
 
@@ -344,12 +433,61 @@
         </div>
     </div>
 
-    <!-- 4. GAME PLAY MODAL -->
+    <!-- ADD E-WALLET ACCOUNT MODAL (Account Name & Phone Number) -->
+    <div id="addWalletModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+        <div class="bg-[#181b22] border border-[#2a2f3d] w-full max-w-sm rounded-xl p-6 relative shadow-2xl space-y-4">
+            <button onclick="closeModal('addWalletModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="text-base font-bold text-white">Add E-Wallet Account</h3>
+            <div>
+                <label class="block text-xs text-gray-400 mb-1">Provider</label>
+                <select id="bind-provider" class="w-full px-3 py-2 rounded custom-input text-xs">
+                    <option value="GCash">GCash</option>
+                    <option value="Maya">Maya</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-xs text-gray-400 mb-1">Account Name<span class="text-red-500">*</span></label>
+                <input type="text" id="bind-accname" placeholder="e.g. Juan Dela Cruz" class="w-full px-3 py-2 rounded custom-input text-xs">
+            </div>
+            <div>
+                <label class="block text-xs text-gray-400 mb-1">Phone Number<span class="text-red-500">*</span></label>
+                <input type="text" id="bind-number" placeholder="09XXXXXXXXX" class="w-full px-3 py-2 rounded custom-input text-xs">
+            </div>
+            <button onclick="saveEWalletAccount()" class="w-full gold-gradient text-black font-bold py-2.5 rounded text-xs shadow">Save Account</button>
+        </div>
+    </div>
+
+    <!-- 4. EXTERNAL GCASH PAYMENT GATEWAY SIMULATION MODAL -->
+    <div id="gatewayModal" class="fixed inset-0 bg-white z-50 flex flex-col hidden text-slate-800">
+        <div class="bg-blue-600 text-white px-6 py-4 flex justify-between items-center shadow">
+            <div class="flex items-center space-x-2 font-bold text-lg">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>GCash Secure Payment Gateway</span>
+            </div>
+            <button onclick="closeModal('gatewayModal')" class="text-white hover:text-gray-200 text-xl font-bold"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="flex-grow flex flex-col items-center justify-center p-6 bg-slate-50 space-y-6">
+            <div class="bg-white p-6 rounded-2xl shadow-xl border border-slate-200 max-w-sm w-full text-center space-y-4">
+                <div class="text-blue-600 font-ext500 text-sm">Securely complete payment with your GCash App</div>
+                <div class="bg-slate-100 p-4 rounded-xl flex items-center justify-center">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=09920232506" alt="GCash QR" class="w-44 h-44 object-contain">
+                </div>
+                <div class="text-xs text-slate-600 space-y-1">
+                    <p><strong>Test Number:</strong> 09920232506</p>
+                    <p><strong>Account Name:</strong> SA**H M** C.</p>
+                    <p class="text-red-500 font-bold text-sm">Amount: <span id="gateway-amount-display">₱500.00</span></p>
+                </div>
+                <button onclick="completeGatewayPayment()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl text-sm shadow transition">I Have Completed Payment</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. GAME PLAY MODAL -->
     <div id="gameModal" class="fixed inset-0 bg-black/90 z-50 flex flex-col hidden">
         <div class="bg-[#181b22] px-6 py-3 border-b border-[#2a2f3d] flex justify-between items-center">
             <div class="flex items-center space-x-3">
                 <span id="active-game-title" class="text-yellow-400 font-bold text-lg">Game</span>
-                <span class="text-xs bg-green-500/10 text-green-400 px-2 py-0.5 rounded border border-green-500/30">Live Balance: <span id="game-modal-balance">₱0.00</span></span>
+                <span class="text-xs bg-green-500/10 text-green-400 px-2 py-0.5 rounded border border-green-500/30">Live Balance: <span id="game-modal-balance">₱0.40</span></span>
             </div>
             <button onclick="closeModal('gameModal')" class="bg-red-600 hover:bg-red-500 text-white px-3 py-1 rounded text-xs font-bold"><i class="fa-solid fa-xmark mr-1"></i> Exit Game</button>
         </div>
@@ -376,6 +514,8 @@
     <script>
         let currentUser = JSON.parse(localStorage.getItem('paldowin_user')) || null;
         let currentBet = 20.00;
+        let selectedDepositAmt = 500;
+        let activeWithdrawWallet = 'GCash';
 
         function initApp() {
             if (currentUser) {
@@ -392,6 +532,7 @@
             if (!currentUser) return;
             const formatted = '₱' + currentUser.balance.toFixed(2);
             document.getElementById('user-balance-display').innerText = formatted;
+            document.getElementById('withdraw-central-bal').innerText = formatted;
             document.getElementById('withdraw-available-bal').innerText = formatted;
             document.getElementById('game-modal-balance').innerText = formatted;
             localStorage.setItem('paldowin_user', JSON.stringify(currentUser));
@@ -410,12 +551,32 @@
             openModal(toId);
         }
 
+        function togglePasswordVisibility(inputId, iconId) {
+            const inputField = document.getElementById(inputId);
+            const icon = document.getElementById(iconId);
+            if (inputField.type === 'password') {
+                inputField.type = 'text';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            } else {
+                inputField.type = 'password';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            }
+        }
+
         function handleRegister(e) {
             e.preventDefault();
             const username = document.getElementById('reg-username').value;
             const mobile = document.getElementById('reg-mobile').value;
             
-            currentUser = { username, mobile, balance: 100.00, pnl: [] };
+            currentUser = { 
+                username, 
+                mobile, 
+                balance: 100.00, 
+                pnl: [],
+                ewallets: []
+            };
             localStorage.setItem('paldowin_user', JSON.stringify(currentUser));
             
             closeModal('registerModal');
@@ -428,7 +589,13 @@
             const username = document.getElementById('login-username').value;
             
             if(!currentUser) {
-                currentUser = { username, mobile: '09920232506', balance: 500.00, pnl: [] };
+                currentUser = { 
+                    username, 
+                    mobile: '09920232506', 
+                    balance: 0.40, 
+                    pnl: [],
+                    ewallets: []
+                };
             }
             localStorage.setItem('paldowin_user', JSON.stringify(currentUser));
             
@@ -452,6 +619,7 @@
             document.getElementById('pc-username').innerText = currentUser.username;
             document.getElementById('profile-username').innerText = currentUser.username;
             document.getElementById('profile-mobile').innerText = currentUser.mobile;
+            updateWithdrawCardUI();
             openModal('personalCenterModal');
             switchTab(tabName);
         }
@@ -467,20 +635,137 @@
             if(tabName === 'profitAndLoss') renderPnL();
         }
 
-        function submitDeposit() {
+        function selectWithdrawWallet(walletType) {
+            activeWithdrawWallet = walletType;
+            if(walletType === 'GCash') {
+                document.getElementById('w-tab-gcash').className = "px-4 py-2 rounded-lg border-2 border-blue-500 bg-blue-500/10 text-white font-bold text-xs flex items-center space-x-2";
+                document.getElementById('w-tab-maya').className = "px-4 py-2 rounded-lg border border-[#2a2f3d] bg-[#12141a] text-gray-400 font-bold text-xs flex items-center space-x-2";
+            } else {
+                document.getElementById('w-tab-maya').className = "px-4 py-2 rounded-lg border-2 border-green-500 bg-green-500/10 text-white font-bold text-xs flex items-center space-x-2";
+                document.getElementById('w-tab-gcash').className = "px-4 py-2 rounded-lg border border-[#2a2f3d] bg-[#12141a] text-gray-400 font-bold text-xs flex items-center space-x-2";
+            }
+            updateWithdrawCardUI();
+        }
+
+        function updateWithdrawCardUI() {
+            if(!currentUser) return;
+            if(!currentUser.ewallets) currentUser.ewallets = [];
+            
+            // Find saved wallet matching active tab type
+            const matchedWallet = currentUser.ewallets.find(w => w.type === activeWithdrawWallet);
+            const container = document.getElementById('bound-card-container');
+
+            if (matchedWallet) {
+                // Show bound account card
+                const masked = '*******' + matchedWallet.number.slice(-4);
+                container.innerHTML = `
+                    <div class="bg-gradient-to-r ${matchedWallet.type === 'GCash' ? 'from-blue-600 to-sky-500' : 'from-emerald-600 to-green-500'} p-5 rounded-2xl shadow-lg relative flex flex-col justify-between h-36">
+                        <div class="flex justify-between items-start">
+                            <span class="text-white font-black tracking-widest text-sm uppercase">${matchedWallet.type} - ${matchedWallet.accName}</span>
+                            <button onclick="removeWallet('${matchedWallet.type}')" class="text-white/80 hover:text-white text-xs bg-black/20 px-2 py-1 rounded">Change</button>
+                        </div>
+                        <div>
+                            <div class="text-white font-mono font-bold text-lg tracking-wider">${masked}</div>
+                            <div class="text-[10px] text-white/80 mt-1">${matchedWallet.date}</div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                // Show + Add Account Button
+                container.innerHTML = `
+                    <button onclick="openAddWalletModal()" class="w-full h-36 rounded-2xl border-2 border-dashed border-gray-600 hover:border-yellow-500 bg-[#12141a] hover:bg-gray-800/50 flex flex-col items-center justify-center space-y-2 transition group">
+                        <div class="w-10 h-10 rounded-full bg-gray-800 group-hover:bg-yellow-500 group-hover:text-black flex items-center justify-center text-gray-300 transition text-lg font-bold">
+                            <i class="fa-solid fa-plus"></i>
+                        </div>
+                        <span class="text-xs font-bold text-gray-300 group-hover:text-yellow-400">Add ${activeWithdrawWallet} Account</span>
+                    </button>
+                `;
+            }
+        }
+
+        function openAddWalletModal() {
+            document.getElementById('bind-provider').value = activeWithdrawWallet;
+            document.getElementById('bind-accname').value = '';
+            document.getElementById('bind-number').value = '';
+            openModal('addWalletModal');
+        }
+
+        function saveEWalletAccount() {
+            const provider = document.getElementById('bind-provider').value;
+            const accName = document.getElementById('bind-accname').value.trim();
+            const number = document.getElementById('bind-number').value.trim();
+            
+            if(!accName) {
+                alert('Please enter account name.');
+                return;
+            }
+            if(!number || number.length < 10) {
+                alert('Please enter a valid phone number.');
+                return;
+            }
+
+            if(!currentUser.ewallets) currentUser.ewallets = [];
+            // Remove existing for this provider if any
+            currentUser.ewallets = currentUser.ewallets.filter(w => w.type !== provider);
+            
+            currentUser.ewallets.push({ 
+                type: provider, 
+                accName: accName, 
+                number: number, 
+                date: new Date().toISOString().replace('T', ' ').substring(0, 19) 
+            });
+
+            localStorage.setItem('paldowin_user', JSON.stringify(currentUser));
+            updateWithdrawCardUI();
+            closeModal('addWalletModal');
+            alert(provider + ' account linked successfully!');
+        }
+
+        function removeWallet(type) {
+            if(confirm('Do you want to change/remove this bound account?')) {
+                currentUser.ewallets = currentUser.ewallets.filter(w => w.type !== type);
+                localStorage.setItem('paldowin_user', JSON.stringify(currentUser));
+                updateWithdrawCardUI();
+            }
+        }
+
+        function setWithdrawAmount(amount) {
+            document.getElementById('withdraw-amount-input').value = amount;
+        }
+
+        function setDepositAmount(amount) {
+            selectedDepositAmt = amount;
+            document.getElementById('deposit-amount-input').value = amount;
+        }
+
+        function proceedDepositGateway() {
             const amount = parseFloat(document.getElementById('deposit-amount-input').value);
             if(isNaN(amount) || amount <= 0) {
                 alert('Please enter a valid amount.');
                 return;
             }
-            currentUser.balance += amount;
-            currentUser.pnl.push({ date: new Date().toLocaleDateString(), deposit: amount, withdraw: 0, profit: amount });
-            updateBalanceDisplay();
-            alert('Successfully deposited ₱' + amount.toFixed(2) + ' via GCash!');
+            selectedDepositAmt = amount;
+            document.getElementById('gateway-amount-display').innerText = '₱' + amount.toFixed(2);
             closeModal('personalCenterModal');
+            openModal('gatewayModal');
+        }
+
+        function completeGatewayPayment() {
+            currentUser.balance += selectedDepositAmt;
+            currentUser.pnl.push({ date: new Date().toLocaleDateString(), deposit: selectedDepositAmt, withdraw: 0, profit: selectedDepositAmt });
+            updateBalanceDisplay();
+            closeModal('gatewayModal');
+            alert('Deposit of ₱' + selectedDepositAmt.toFixed(2) + ' credited successfully!');
         }
 
         function submitWithdrawal() {
+            const matchedWallet = currentUser.ewallets ? currentUser.ewallets.find(w => w.type === activeWithdrawWallet) : null;
+            if(!matchedWallet) {
+                alert('Please add and bind your ' + activeWithdrawWallet + ' account first!');
+                openAddWalletModal();
+                return;
+            }
+
             const amount = parseFloat(document.getElementById('withdraw-amount-input').value);
             if(isNaN(amount) || amount <= 0) {
                 alert('Please enter a valid amount.');
