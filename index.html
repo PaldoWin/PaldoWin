@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaldoWin - Online Casino & Gaming</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Poppins', sans-serif; background-color: #0f1117; color: #e2e8f0; }
+        .gold-gradient { background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #b45309 100%); }
+        .dark-card { background: #181b22; border: 1px solid #2a2f3d; }
+        .custom-input { background: #12141a; border: 1px solid #2a2f3d; color: white; }
+        .custom-input:focus { border-color: #f59e0b; outline: none; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Top Utility Bar -->
+    <div class="bg-[#12141a] border-b border-[#2a2f3d] text-xs py-1.5 px-4 flex justify-between items-center text-gray-400">
+        <div class="flex items-center space-x-4">
+            <span class="flex items-center"><i class="fa-solid fa-volume-high text-yellow-500 mr-1.5"></i> Notice: Deposit 150 Get Free 158 Bonus!</span>
+        </div>
+        <div class="flex items-center space-x-4">
+            <span class="text-yellow-400 font-medium"><i class="fa-solid fa-star mr-1"></i> Be An Agent and Earn 388PHP For Every Referral</span>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="bg-[#181b22] border-b border-[#2a2f3d] sticky top-0 z-40 px-4 py-3 shadow-md">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center space-x-3">
+                <span class="text-2xl font-ext500 tracking-wider text-transparent bg-clip-text gold-gradient font-black">PALDOWIN</span>
+                <span class="hidden md:inline-block bg-yellow-500/10 text-yellow-500 text-xs px-2 py-0.5 rounded border border-yellow-500/30">VIP6</span>
+            </div>
+
+            <!-- User Auth / Wallet State -->
+            <div id="auth-header-container" class="flex items-center space-x-3">
+                <!-- Logged Out View -->
+                <div id="logged-out-nav" class="flex items-center space-x-2">
+                    <button onclick="openModal('loginModal')" class="bg-transparent border border-gray-600 hover:border-yellow-500 text-white px-4 py-1.5 rounded text-sm font-medium transition">Login</button>
+                    <button onclick="openModal('registerModal')" class="gold-gradient text-black px-4 py-1.5 rounded text-sm font-bold shadow hover:opacity-90 transition">Register</button>
+                </div>
+
+                <!-- Logged In View (Hidden by default) -->
+                <div id="logged-in-nav" class="hidden flex items-center space-x-3">
+                    <div class="bg-[#12141a] border border-[#2a2f3d] px-3 py-1 rounded flex items-center space-x-2">
+                        <span class="text-xs text-gray-400">Balance:</span>
+                        <span id="user-balance-display" class="text-yellow-400 font-bold">₱0.00</span>
+                        <button onclick="refreshBalance()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-rotate-right text-xs"></i></button>
+                    </div>
+                    <button onclick="openPersonalCenter('deposit')" class="gold-gradient text-black px-3 py-1 rounded text-xs font-bold flex items-center space-x-1">
+                        <i class="fa-solid fa-wallet"></i> <span>Deposit</span>
+                    </button>
+                    <button onclick="openPersonalCenter('withdrawal')" class="bg-gray-800 hover:bg-gray-700 text-white border border-gray-600 px-3 py-1 rounded text-xs font-medium">
+                        Withdraw
+                    </button>
+                    <button onclick="openPersonalCenter('myAccount')" class="bg-[#12141a] hover:bg-gray-800 text-gray-300 px-3 py-1 rounded text-xs border border-[#2a2f3d]">
+                        <i class="fa-solid fa-user-gear"></i>
+                    </button>
+                    <button onclick="logout()" class="text-red-400 hover:text-red-300 text-xs px-2 py-1"><i class="fa-solid fa-power-off"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Categories -->
+        <nav class="max-w-7xl mx-auto mt-3 overflow-x-auto flex space-x-6 text-sm pb-1 scrollbar-none">
+            <a href="#" class="text-yellow-400 font-bold flex flex-col items-center space-y-1 shrink-0"><i class="fa-solid fa-house text-lg"></i><span>HOME</span></a>
+            <a href="#slots" class="text-gray-400 hover:text-yellow-400 flex flex-col items-center space-y-1 shrink-0"><i class="fa-solid fa-gamepad text-lg"></i><span>SLOTS</span></a>
+            <a href="#fishing" class="text-gray-400 hover:text-yellow-400 flex flex-col items-center space-y-1 shrink-0"><i class="fa-solid fa-fish text-lg"></i><span>FISHING</span></a>
+            <a href="#live" class="text-gray-400 hover:text-yellow-400 flex flex-col items-center space-y-1 shrink-0"><i class="fa-solid fa-video text-lg"></i><span>LIVE CASINO</span></a>
+            <a href="#arcade" class="text-gray-400 hover:text-yellow-400 flex flex-col items-center space-y-1 shrink-0"><i class="fa-solid fa-dice text-lg"></i><span>ARCADE</span></a>
+            <a href="#sports" class="text-gray-400 hover:text-yellow-400 flex flex-col items-center space-y-1 shrink-0"><i class="fa-solid fa-futbol text-lg"></i><span>SPORTS</span></a>
+            <a href="#lottery" class="text-gray-400 hover:text-yellow-400 flex flex-col items-center space-y-1 shrink-0"><i class="fa-solid fa-ticket text-lg"></i><span>LOTTERY</span></a>
+            <a href="#promos" class="text-gray-400 hover:text-yellow-400 flex flex-col items-center space-y-1 shrink-0"><i class="fa-solid fa-gift text-lg"></i><span>PROMOTIONS</span></a>
+        </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-7xl mx-auto px-4 py-6 flex-grow w-full space-y-6">
+        
+        <!-- Hot Games Grid -->
+        <div>
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-lg font-bold text-white flex items-center space-x-2">
+                    <i class="fa-solid fa-fire text-yellow-500"></i>
+                    <span>Hot Games</span>
+                </h2>
+                <div class="text-xs text-gray-400">Popular PHWin & JILI Hits</div>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <!-- Super Ace -->
+                <div onclick="playGame('Super Ace')" class="dark-card rounded-lg overflow-hidden group cursor-pointer hover:border-yellow-500 transition shadow">
+                    <div class="bg-gradient-to-br from-yellow-600 to-amber-800 h-32 flex items-center justify-center relative">
+                        <i class="fa-solid fa-crown text-4xl text-white/80 group-hover:scale-110 transition"></i>
+                        <span class="absolute top-2 left-2 bg-red-600 text-white text-[10px] px-1.5 py-0.5 rounded font-bold">HOT</span>
+                    </div>
+                    <div class="p-2 text-center">
+                        <div class="text-sm font-bold text-white truncate">Super Ace</div>
+                        <div class="text-[10px] text-yellow-500">JILI Games</div>
+                    </div>
+                </div>
+
+                <!-- Money Coming -->
+                <div onclick="playGame('Money Coming')" class="dark-card rounded-lg overflow-hidden group cursor-pointer hover:border-yellow-500 transition shadow">
+                    <div class="bg-gradient-to-br from-green-600 to-emerald-800 h-32 flex items-center justify-center relative">
+                        <i class="fa-solid fa-money-bill-wave text-4xl text-white/80 group-hover:scale-110 transition"></i>
+                        <span class="absolute top-2 left-2 bg-yellow-500 text-black text-[10px] px-1.5 py-0.5 rounded font-bold">25,000X</span>
+                    </div>
+                    <div class="p-2 text-center">
+                        <div class="text-sm font-bold text-white truncate">Money Coming</div>
+                        <div class="text-[10px] text-yellow-500">JILI Games</div>
+                    </div>
+                </div>
+
+                <!-- Golden Empire -->
+                <div onclick="playGame('Golden Empire')" class="dark-card rounded-lg overflow-hidden group cursor-pointer hover:border-yellow-500 transition shadow">
+                    <div class="bg-gradient-to-br from-yellow-700 to-yellow-900 h-32 flex items-center justify-center relative">
+                        <i class="fa-solid fa-landmark text-4xl text-white/80 group-hover:scale-110 transition"></i>
+                    </div>
+                    <div class="p-2 text-center">
+                        <div class="text-sm font-bold text-white truncate">Golden Empire</div>
+                        <div class="text-[10px] text-yellow-500">JILI Games</div>
+                    </div>
+                </div>
+
+                <!-- Gates of Olympus -->
+                <div onclick="playGame('Gates of Olympus')" class="dark-card rounded-lg overflow-hidden group cursor-pointer hover:border-yellow-500 transition shadow">
+                    <div class="bg-gradient-to-br from-blue-600 to-indigo-900 h-32 flex items-center justify-center relative">
+                        <i class="fa-solid fa-bolt text-4xl text-white/80 group-hover:scale-110 transition"></i>
+                    </div>
+                    <div class="p-2 text-center">
+                        <div class="text-sm font-bold text-white truncate">Gates of Olympus</div>
+                        <div class="text-[10px] text-yellow-500">Pragmatic Play</div>
+                    </div>
+                </div>
+
+                <!-- Crazy 777 -->
+                <div onclick="playGame('Crazy 777')" class="dark-card rounded-lg overflow-hidden group cursor-pointer hover:border-yellow-500 transition shadow">
+                    <div class="bg-gradient-to-br from-red-600 to-rose-900 h-32 flex items-center justify-center relative">
+                        <i class="fa-solid fa-7 text-4xl text-white/80 group-hover:scale-110 transition"></i>
+                    </div>
+                    <div class="p-2 text-center">
+                        <div class="text-sm font-bold text-white truncate">Crazy777</div>
+                        <div class="text-[10px] text-yellow-500">JILI Games</div>
+                    </div>
+                </div>
+
+                <!-- Lucky Neko -->
+                <div onclick="playGame('Lucky Neko')" class="dark-card rounded-lg overflow-hidden group cursor-pointer hover:border-yellow-500 transition shadow">
+                    <div class="bg-gradient-to-br from-purple-600 to-pink-900 h-32 flex items-center justify-center relative">
+                        <i class="fa-solid fa-cat text-4xl text-white/80 group-hover:scale-110 transition"></i>
+                    </div>
+                    <div class="p-2 text-center">
+                        <div class="text-sm font-bold text-white truncate">Lucky Neko</div>
+                        <div class="text-[10px] text-yellow-500">PG Soft</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#12141a] border-t border-[#2a2f3d] py-6 text-center text-xs text-gray-500 mt-auto">
+        <p>&copy; 2026 PaldoWin Gaming Platform. All rights reserved.</p>
+    </footer>
+
+    <!-- ================= MODALS ================= -->
+
+    <!-- 1. REGISTER MODAL (Matching Reference Image) -->
+    <div id="registerModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+        <div class="bg-[#181b22] border border-[#2a2f3d] w-full max-w-md rounded-xl p-6 relative shadow-2xl">
+            <button onclick="closeModal('registerModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
+            <h2 class="text-2xl font-bold text-white mb-6">Register</h2>
+            
+            <form onsubmit="handleRegister(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-medium text-gray-300 mb-1">Username<span class="text-red-500">*</span></label>
+                    <input type="text" id="reg-username" required placeholder="Username" class="w-full px-4 py-2.5 rounded-lg custom-input text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-gray-300 mb-1">Password<span class="text-red-500">*</span></label>
+                    <input type="password" id="reg-password" required placeholder="Password" class="w-full px-4 py-2.5 rounded-lg custom-input text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-gray-300 mb-1">Mobile number<span class="text-red-500">*</span></label>
+                    <input type="text" id="reg-mobile" required placeholder="Mobile number" class="w-full px-4 py-2.5 rounded-lg custom-input text-sm">
+                </div>
+
+                <div class="flex space-x-3 pt-2">
+                    <button type="submit" class="w-1/2 gold-gradient text-black font-bold py-2.5 rounded-lg text-sm shadow hover:opacity-90 transition">REGISTER</button>
+                    <button type="reset" class="w-1/2 bg-gray-700 hover:bg-gray-600 text-white font-bold py-2.5 rounded-lg text-sm transition">RESET</button>
+                </div>
+            </form>
+
+            <div class="mt-6 text-center text-xs text-gray-400">
+                Already have an account? <button onclick="switchModal('registerModal', 'loginModal')" class="text-yellow-400 font-bold hover:underline">Login</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. LOGIN MODAL -->
+    <div id="loginModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+        <div class="bg-[#181b22] border border-[#2a2f3d] w-full max-w-md rounded-xl p-6 relative shadow-2xl">
+            <button onclick="closeModal('loginModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
+            <h2 class="text-2xl font-bold text-white mb-6">Login</h2>
+            
+            <form onsubmit="handleLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-medium text-gray-300 mb-1">Username<span class="text-red-500">*</span></label>
+                    <input type="text" id="login-username" required placeholder="Username" class="w-full px-4 py-2.5 rounded-lg custom-input text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-gray-300 mb-1">Password<span class="text-red-500">*</span></label>
+                    <input type="password" id="login-password" required placeholder="Password" class="w-full px-4 py-2.5 rounded-lg custom-input text-sm">
+                </div>
+
+                <button type="submit" class="w-full gold-gradient text-black font-bold py-2.5 rounded-lg text-sm shadow hover:opacity-90 transition mt-2">LOGIN</button>
+            </form>
+
+            <div class="mt-6 text-center text-xs text-gray-400">
+                Don't have an account? <button onclick="switchModal('loginModal', 'registerModal')" class="text-yellow-400 font-bold hover:underline">Register</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. PERSONAL CENTER / CASHIER MODAL -->
+    <div id="personalCenterModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+        <div class="bg-[#181b22] border border-[#2a2f3d] w-full max-w-4xl h-[85vh] rounded-xl overflow-hidden flex relative shadow-2xl">
+            <!-- Sidebar -->
+            <div class="w-64 bg-[#12141a] border-r border-[#2a2f3d] flex flex-col">
+                <div class="p-4 border-b border-[#2a2f3d]">
+                    <div class="text-xs text-gray-400">Personal Center</div>
+                    <div id="pc-username" class="text-sm font-bold text-yellow-400 truncate">User</div>
+                </div>
+                <div class="flex-grow overflow-y-auto space-y-1 p-2">
+                    <button onclick="switchTab('deposit')" id="tab-btn-deposit" class="w-full text-left px-3 py-2.5 rounded text-xs font-medium text-gray-300 hover:bg-[#181b22] flex items-center space-x-2"><i class="fa-solid fa-wallet text-yellow-500 w-5"></i><span>Deposit</span></button>
+                    <button onclick="switchTab('withdrawal')" id="tab-btn-withdrawal" class="w-full text-left px-3 py-2.5 rounded text-xs font-medium text-gray-300 hover:bg-[#181b22] flex items-center space-x-2"><i class="fa-solid fa-money-bill-transfer text-yellow-500 w-5"></i><span>Withdrawal</span></button>
+                    <button onclick="switchTab('myAccount')" id="tab-btn-myAccount" class="w-full text-left px-3 py-2.5 rounded text-xs font-medium text-gray-300 hover:bg-[#181b22] flex items-center space-x-2"><i class="fa-solid fa-user text-yellow-500 w-5"></i><span>My Account</span></button>
+                    <button onclick="switchTab('profitAndLoss')" id="tab-btn-profitAndLoss" class="w-full text-left px-3 py-2.5 rounded text-xs font-medium text-gray-300 hover:bg-[#181b22] flex items-center space-x-2"><i class="fa-solid fa-chart-line text-yellow-500 w-5"></i><span>Profit and Loss</span></button>
+                </div>
+            </div>
+
+            <!-- Content Panel -->
+            <div class="flex-grow flex flex-col bg-[#181b22] relative overflow-y-auto">
+                <button onclick="closeModal('personalCenterModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg z-10"><i class="fa-solid fa-xmark"></i></button>
+
+                <!-- Deposit Tab Content -->
+                <div id="tab-content-deposit" class="p-6 space-y-6">
+                    <h3 class="text-lg font-bold text-white border-b border-[#2a2f3d] pb-3">Deposit Info</h3>
+                    
+                    <div class="grid grid-cols-3 gap-3">
+                        <div class="border border-yellow-500 bg-yellow-500/10 p-3 rounded-lg text-center cursor-pointer">
+                            <div class="font-bold text-white text-sm">GCash</div>
+                            <div class="text-[10px] text-yellow-400">Instant Credit</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-[#12141a] p-4 rounded-xl border border-[#2a2f3d] space-y-4">
+                        <div class="text-xs font-bold text-gray-400">Scan QR Code to Deposit (GCash Test Number: <span class="text-yellow-400">09920232506</span>)</div>
+                        <div class="flex flex-col md:flex-row items-center gap-4">
+                            <div class="bg-white p-2 rounded shadow w-40 h-40 flex items-center justify-center">
+                                <!-- User Provided GCash QR Image -->
+                                <img src="image_8ea1de.jpg" onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=09920232506'" alt="GCash QR" class="w-full h-full object-contain">
+                            </div>
+                            <div class="text-xs text-gray-300 space-y-2">
+                                <p><strong class="text-white">Account Name:</strong> SA**H M** C.</p>
+                                <p><strong class="text-white">GCash Number:</strong> 09920232506</p>
+                                <p class="text-gray-400">Transfer funds to the account above, enter the amount, and click submit below to test.</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-medium text-gray-300 mb-1">Deposit Amount (PHP)</label>
+                            <input type="number" id="deposit-amount-input" value="500" class="w-full px-4 py-2 rounded custom-input text-sm">
+                        </div>
+
+                        <button onclick="submitDeposit()" class="w-full gold-gradient text-black font-bold py-2.5 rounded text-sm shadow hover:opacity-90 transition">Apply for Deposit</button>
+                    </div>
+                </div>
+
+                <!-- Withdrawal Tab Content -->
+                <div id="tab-content-withdrawal" class="p-6 space-y-6 hidden">
+                    <h3 class="text-lg font-bold text-white border-b border-[#2a2f3d] pb-3">Withdrawal</h3>
+                    <div class="bg-[#12141a] p-4 rounded-xl border border-[#2a2f3d] space-y-4">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-400">Available Amount:</span>
+                            <span id="withdraw-available-bal" class="text-yellow-400 font-bold">₱0.00</span>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-300 mb-1">Withdraw Amount</label>
+                            <input type="number" id="withdraw-amount-input" placeholder="Enter amount" class="w-full px-4 py-2 rounded custom-input text-sm">
+                        </div>
+                        <button onclick="submitWithdrawal()" class="w-full bg-red-600 hover:bg-red-500 text-white font-bold py-2.5 rounded text-sm shadow transition">Submit Withdrawal</button>
+                    </div>
+                </div>
+
+                <!-- My Account Tab Content -->
+                <div id="tab-content-myAccount" class="p-6 space-y-6 hidden">
+                    <h3 class="text-lg font-bold text-white border-b border-[#2a2f3d] pb-3">My Account Profile</h3>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex justify-between py-2 border-b border-[#2a2f3d]">
+                            <span class="text-gray-400">Username:</span>
+                            <span id="profile-username" class="text-white font-bold">-</span>
+                        </div>
+                        <div class="flex justify-between py-2 border-b border-[#2a2f3d]">
+                            <span class="text-gray-400">Mobile Number:</span>
+                            <span id="profile-mobile" class="text-white font-bold">-</span>
+                        </div>
+                        <div class="flex justify-between py-2 border-b border-[#2a2f3d]">
+                            <span class="text-gray-400">VIP Level:</span>
+                            <span class="text-yellow-400 font-bold">VIP 6</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profit And Loss Tab Content -->
+                <div id="tab-content-profitAndLoss" class="p-6 space-y-6 hidden">
+                    <h3 class="text-lg font-bold text-white border-b border-[#2a2f3d] pb-3">Profit and Loss Record</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs text-gray-300">
+                            <thead class="bg-[#12141a] text-gray-400 uppercase">
+                                <tr>
+                                    <th class="p-3">Date</th>
+                                    <th class="p-3">Deposit</th>
+                                    <th class="p-3">Withdraw</th>
+                                    <th class="p-3">Profit/Loss</th>
+                                </tr>
+                            </thead>
+                            <tbody id="pnl-table-body">
+                                <tr>
+                                    <td colspan="4" class="p-4 text-center text-gray-500">No recent transactions recorded.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. GAME PLAY MODAL -->
+    <div id="gameModal" class="fixed inset-0 bg-black/90 z-50 flex flex-col hidden">
+        <div class="bg-[#181b22] px-6 py-3 border-b border-[#2a2f3d] flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <span id="active-game-title" class="text-yellow-400 font-bold text-lg">Game</span>
+                <span class="text-xs bg-green-500/10 text-green-400 px-2 py-0.5 rounded border border-green-500/30">Live Balance: <span id="game-modal-balance">₱0.00</span></span>
+            </div>
+            <button onclick="closeModal('gameModal')" class="bg-red-600 hover:bg-red-500 text-white px-3 py-1 rounded text-xs font-bold"><i class="fa-solid fa-xmark mr-1"></i> Exit Game</button>
+        </div>
+        <div class="flex-grow flex items-center justify-center p-6 bg-gradient-to-b from-[#0f1117] to-[#181b22]">
+            <div class="bg-[#181b22] border border-[#2a2f3d] p-6 rounded-2xl w-full max-w-lg text-center space-y-6 shadow-2xl">
+                <div class="text-6xl text-yellow-500 animate-bounce"><i class="fa-solid fa-coins"></i></div>
+                <div>
+                    <h3 id="simulation-game-name" class="text-xl font-bold text-white">Super Ace</h3>
+                    <p class="text-xs text-gray-400 mt-1">Place your bet and spin to win big multipliers!</p>
+                </div>
+                <div class="flex items-center justify-center space-x-3">
+                    <span class="text-xs text-gray-400">Bet Amount:</span>
+                    <button onclick="adjustBet(-10)" class="bg-gray-800 px-3 py-1 rounded text-white">-</button>
+                    <span id="current-bet-val" class="text-yellow-400 font-bold text-base">₱20.00</span>
+                    <button onclick="adjustBet(10)" class="bg-gray-800 px-3 py-1 rounded text-white">+</button>
+                </div>
+                <button onclick="executeSpin()" class="w-full gold-gradient text-black font-ext500 py-3 rounded-xl text-base shadow-lg hover:opacity-90 transition">SPIN NOW</button>
+                <div id="spin-result-msg" class="text-sm font-bold text-gray-300 h-6"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Application Controller -->
+    <script>
+        let currentUser = JSON.parse(localStorage.getItem('paldowin_user')) || null;
+        let currentBet = 20.00;
+
+        function initApp() {
+            if (currentUser) {
+                document.getElementById('logged-out-nav').classList.add('hidden');
+                document.getElementById('logged-in-nav').classList.remove('hidden');
+                updateBalanceDisplay();
+            } else {
+                document.getElementById('logged-out-nav').classList.remove('hidden');
+                document.getElementById('logged-in-nav').classList.add('hidden');
+            }
+        }
+
+        function updateBalanceDisplay() {
+            if (!currentUser) return;
+            const formatted = '₱' + currentUser.balance.toFixed(2);
+            document.getElementById('user-balance-display').innerText = formatted;
+            document.getElementById('withdraw-available-bal').innerText = formatted;
+            document.getElementById('game-modal-balance').innerText = formatted;
+            localStorage.setItem('paldowin_user', JSON.stringify(currentUser));
+        }
+
+        function refreshBalance() {
+            alert('Balance synchronized successfully!');
+            updateBalanceDisplay();
+        }
+
+        function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+        function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+
+        function switchModal(fromId, toId) {
+            closeModal(fromId);
+            openModal(toId);
+        }
+
+        function handleRegister(e) {
+            e.preventDefault();
+            const username = document.getElementById('reg-username').value;
+            const mobile = document.getElementById('reg-mobile').value;
+            
+            currentUser = { username, mobile, balance: 100.00, pnl: [] };
+            localStorage.setItem('paldowin_user', JSON.stringify(currentUser));
+            
+            closeModal('registerModal');
+            initApp();
+            alert('Registration successful! Welcome bonus of ₱100 added.');
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const username = document.getElementById('login-username').value;
+            
+            if(!currentUser) {
+                currentUser = { username, mobile: '09920232506', balance: 500.00, pnl: [] };
+            }
+            localStorage.setItem('paldowin_user', JSON.stringify(currentUser));
+            
+            closeModal('loginModal');
+            initApp();
+            alert('Welcome back, ' + username + '!');
+        }
+
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('paldowin_user');
+            initApp();
+            alert('Logged out successfully.');
+        }
+
+        function openPersonalCenter(tabName) {
+            if (!currentUser) {
+                openModal('loginModal');
+                return;
+            }
+            document.getElementById('pc-username').innerText = currentUser.username;
+            document.getElementById('profile-username').innerText = currentUser.username;
+            document.getElementById('profile-mobile').innerText = currentUser.mobile;
+            openModal('personalCenterModal');
+            switchTab(tabName);
+        }
+
+        function switchTab(tabName) {
+            ['deposit', 'withdrawal', 'myAccount', 'profitAndLoss'].forEach(t => {
+                document.getElementById('tab-content-' + t).classList.add('hidden');
+                document.getElementById('tab-btn-' + t).classList.remove('bg-[#181b22]', 'text-yellow-400');
+            });
+            document.getElementById('tab-content-' + tabName).classList.remove('hidden');
+            document.getElementById('tab-btn-' + tabName).classList.add('bg-[#181b22]', 'text-yellow-400');
+
+            if(tabName === 'profitAndLoss') renderPnL();
+        }
+
+        function submitDeposit() {
+            const amount = parseFloat(document.getElementById('deposit-amount-input').value);
+            if(isNaN(amount) || amount <= 0) {
+                alert('Please enter a valid amount.');
+                return;
+            }
+            currentUser.balance += amount;
+            currentUser.pnl.push({ date: new Date().toLocaleDateString(), deposit: amount, withdraw: 0, profit: amount });
+            updateBalanceDisplay();
+            alert('Successfully deposited ₱' + amount.toFixed(2) + ' via GCash!');
+            closeModal('personalCenterModal');
+        }
+
+        function submitWithdrawal() {
+            const amount = parseFloat(document.getElementById('withdraw-amount-input').value);
+            if(isNaN(amount) || amount <= 0) {
+                alert('Please enter a valid amount.');
+                return;
+            }
+            if(amount > currentUser.balance) {
+                alert('Insufficient available balance.');
+                return;
+            }
+            currentUser.balance -= amount;
+            currentUser.pnl.push({ date: new Date().toLocaleDateString(), deposit: 0, withdraw: amount, profit: -amount });
+            updateBalanceDisplay();
+            alert('Withdrawal request of ₱' + amount.toFixed(2) + ' submitted successfully!');
+            closeModal('personalCenterModal');
+        }
+
+        function renderPnL() {
+            const tbody = document.getElementById('pnl-table-body');
+            if(!currentUser.pnl || currentUser.pnl.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="4" class="p-4 text-center text-gray-500">No recent transactions recorded.</td></tr>`;
+                return;
+            }
+            tbody.innerHTML = currentUser.pnl.map(item => `
+                <tr class="border-b border-[#2a2f3d]">
+                    <td class="p-3">${item.date}</td>
+                    <td class="p-3 text-green-400">₱${item.deposit.toFixed(2)}</td>
+                    <td class="p-3 text-red-400">₱${item.withdraw.toFixed(2)}</td>
+                    <td class="p-3 font-bold ${item.profit >= 0 ? 'text-green-400' : 'text-red-400'}">₱${item.profit.toFixed(2)}</td>
+                </tr>
+            `).join('');
+        }
+
+        function playGame(gameName) {
+            if (!currentUser) {
+                alert('Please login or register first to play games!');
+                openModal('loginModal');
+                return;
+            }
+            document.getElementById('active-game-title').innerText = gameName;
+            document.getElementById('simulation-game-name').innerText = gameName;
+            document.getElementById('spin-result-msg').innerText = '';
+            openModal('gameModal');
+        }
+
+        function adjustBet(amount) {
+            currentBet = Math.max(5, currentBet + amount);
+            document.getElementById('current-bet-val').innerText = '₱' + currentBet.toFixed(2);
+        }
+
+        function executeSpin() {
+            if(currentUser.balance < currentBet) {
+                alert('Insufficient balance! Please deposit funds.');
+                return;
+            }
+            currentUser.balance -= currentBet;
+            const winMultiplier = [0, 0, 0.5, 2, 5, 10][Math.floor(Math.random() * 6)];
+            const winAmount = currentBet * winMultiplier;
+            currentUser.balance += winAmount;
+            
+            updateBalanceDisplay();
+            
+            const msg = document.getElementById('spin-result-msg');
+            if(winAmount > 0) {
+                msg.className = "text-sm font-bold text-green-400 h-6";
+                msg.innerText = `🎉 CONGRATS! You won ₱${winAmount.toFixed(2)} (${winMultiplier}X)!`;
+            } else {
+                msg.className = "text-sm font-bold text-red-400 h-6";
+                msg.innerText = `❌ No win this spin. Try again!`;
+            }
+        }
+
+        window.onload = initApp;
+    </script>
+</body>
+</html>
